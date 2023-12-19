@@ -7,8 +7,6 @@ export default async function Home() {
   return (
     <main className="max-w-3xl mx-auto mt-5">
       <h1> Hii</h1>
-      <LandingPage/>
-      <TestFunctionality/>
     </main>
   )
   };
