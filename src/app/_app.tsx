@@ -10,9 +10,6 @@ function MyApp({ Component, pageProps } : AppProps) {
   return (
     <>
       <Head>
-      <link rel="preconnect" href="https://fonts.googleapis.com"/>
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-      <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Your+Selected+Font&display=swap"
