@@ -127,8 +127,26 @@ export default function SignUp() {
 
                     </div>
                 </div>
-                <div className="followings">
-
+                <div className="creator">
+                    <img src={imgp7} alt="" />
+                    <h2>Big bundah Girl</h2>
+                    <div style={{display : "flex" , marginTop : "1vh"}}>
+                        <div className="creator-followers">
+                            <h1>1.5M</h1>
+                            <h3>Followers</h3>
+                        </div>
+                        <div className="creator-following">
+                            <h1>1</h1>
+                            <h3>Following</h3>
+                        </div>
+                    </div>
+                    <div className="creator_summary">
+                        <p>Embracing my curves with confidence, I am the Big Bundah girl who owns every room she enters.</p>
+                        <p>My big bundah is not just a feature! I walk with a stride that speaks volumes, turning heads and breaking stereotypes</p>
+                    </div>
+                    <div className="creator-favourite-foods">
+                        <h1>Favourite foods :</h1>
+                    </div>
                 </div>
             </div>
       </section>

@@ -99,6 +99,7 @@ input[type=text]:focus {
     display: flex;
     margin-left: 1vh;
     padding: 4px;
+    cursor: pointer;
 }
 .explore:hover {
     background-color: rgb(42, 42, 42);
@@ -113,6 +114,7 @@ input[type=text]:focus {
     margin-top: 1.5vh;
     margin-left: 1vh;
     padding: 4px;
+    cursor: pointer;
 }
 .forYou:hover {
     background-color: rgb(42, 42, 42);
@@ -128,6 +130,7 @@ input[type=text]:focus {
     margin-left: 1vh;
     padding-bottom: 3.5vh;
     padding: 4px;
+    cursor: pointer;
 }
 .profile:hover {
     background-color: rgb(42, 42, 42);
@@ -142,6 +145,7 @@ input[type=text]:focus {
 .logout  {
     border-top: 2px solid gray;
     display: flex;
+    cursor: pointer;
 }
 .logout > div {
     padding: 0px;
@@ -264,8 +268,53 @@ input[type=text]:focus {
     padding-left: 2vh;
 }
 
-.followings {
+.creator {
     width: 48vh;
     background-color: rgb(225, 225, 225);
     border-radius: 10px;
+    padding: 10px 0px;
+}
+
+.creator > img {
+    width: 90%;
+    height: 50%;
+    margin-left: 2.5vh;
+    border-radius: 10px;
+}
+
+.creator > h2 {
+    padding-top: 3vh;
+    margin-left: 2.5vh;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.creator-followers {
+    display: flex;
+    margin-left: 2.5vh;
+}
+
+.creator-followers > h1{
+    font-weight: bold;
+    margin-right: 1vh;
+}
+
+.creator-following {
+    padding-left: 3vh;
+    display: flex;
+}
+
+.creator-following > h1{
+    font-weight: bold;
+    margin-right: 1vh;
+}
+
+.creator_summary {
+    padding: 1vh 2.5vh;
+    font-size: 14px;
+}
+
+.creator-favourite-foods > h1{
+    font-weight: bolder;
+    margin-left: 2.5vh;
 }
