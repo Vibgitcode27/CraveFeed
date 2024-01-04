@@ -118,4 +118,35 @@ export const userRouter = router({
             });
             return { success: true }; // To test the code remove later
         }),
+    getfollowers: publicProcedure
+        .input(z.object({
+            Id: z.number(),
+        }))
+        .mutation(async (opts) => {
+            let userId = opts.input.Id;
+
+            const followers = await opts.ctx.prisma.Follower.findMany({
+                where: {
+                    followingId: userId,
+                },
+            });
+
+            return { followers };
+        }),
+    getfollowing: publicProcedure
+        .input(z.object({
+            Id: z.number(),
+        }))
+        .mutation(async (opts) => {
+            let userId = opts.input.Id;
+
+            const following = await opts.ctx.prisma.Follower.findMany({
+                where: {
+                    followerId: userId,
+                },
+            });
+
+            return { following };
+        }),
+
 })
