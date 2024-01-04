@@ -1,24 +1,28 @@
-/*
-  Warnings:
+-- CreateTable
+CREATE TABLE "User" (
+    "id" SERIAL NOT NULL,
+    "email" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "profilepicture" TEXT,
+    "bio" TEXT,
 
-  - You are about to drop the column `createdAt` on the `Like` table. All the data in the column will be lost.
-  - Added the required column `text` to the `Comment` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `cityId` to the `Post` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `dishId` to the `Post` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `restaurantId` to the `Post` table without a default value. This is not possible if the table is not empty.
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
 
-*/
--- AlterTable
-ALTER TABLE "Comment" ADD COLUMN     "text" TEXT NOT NULL;
+-- CreateTable
+CREATE TABLE "Post" (
+    "id" SERIAL NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "restaurantId" INTEGER NOT NULL,
+    "dishId" INTEGER NOT NULL,
+    "cityId" INTEGER NOT NULL,
+    "caption" TEXT,
+    "image" TEXT,
+    "createAt" TIMESTAMP(3),
 
--- AlterTable
-ALTER TABLE "Like" DROP COLUMN "createdAt";
-
--- AlterTable
-ALTER TABLE "Post" ADD COLUMN     "cityId" INTEGER NOT NULL,
-ADD COLUMN     "dishId" INTEGER NOT NULL,
-ADD COLUMN     "restaurantId" INTEGER NOT NULL,
-ALTER COLUMN "image" SET DATA TYPE TEXT;
+    CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "Restaurant" (
@@ -61,6 +65,25 @@ CREATE TABLE "Follower" (
 );
 
 -- CreateTable
+CREATE TABLE "Like" (
+    "id" SERIAL NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "postId" INTEGER NOT NULL,
+
+    CONSTRAINT "Like_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Comment" (
+    "id" SERIAL NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "postId" INTEGER NOT NULL,
+    "text" TEXT NOT NULL,
+
+    CONSTRAINT "Comment_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Leaderboard" (
     "id" SERIAL NOT NULL,
     "postId" INTEGER NOT NULL,
@@ -79,6 +102,15 @@ CREATE TABLE "CityLeaderboard" (
     CONSTRAINT "CityLeaderboard_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
+
+-- AddForeignKey
+ALTER TABLE "Post" ADD CONSTRAINT "Post_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
 -- AddForeignKey
 ALTER TABLE "Post" ADD CONSTRAINT "Post_restaurantId_fkey" FOREIGN KEY ("restaurantId") REFERENCES "Restaurant"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -96,6 +128,18 @@ ALTER TABLE "Follower" ADD CONSTRAINT "Follower_followerId_fkey" FOREIGN KEY ("f
 
 -- AddForeignKey
 ALTER TABLE "Follower" ADD CONSTRAINT "Follower_followingId_fkey" FOREIGN KEY ("followingId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Like" ADD CONSTRAINT "Like_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Like" ADD CONSTRAINT "Like_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Comment" ADD CONSTRAINT "Comment_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Comment" ADD CONSTRAINT "Comment_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Leaderboard" ADD CONSTRAINT "Leaderboard_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

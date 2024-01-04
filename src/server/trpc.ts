@@ -1,5 +1,5 @@
 import { initTRPC } from '@trpc/server';
-import { PrismaClient } from '@prisma/client'; 
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient()
 /**
@@ -10,7 +10,7 @@ const t = initTRPC
     .context<{
         prisma: {
             User: typeof prisma.User;
-            Follower: typeof prisma.Follower;
+            Follower: typeof prisma.p;
             // Add other models here as needed
         };
         username?: string;
