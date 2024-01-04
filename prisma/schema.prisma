@@ -77,7 +77,6 @@ model Follower {
   id            Int      @id @default(autoincrement())
   followerId    Int // Foreign key referencing User table
   followingId   Int // Foreign key referencing User table
-  createdAt     DateTime
   User          User     @relation("follower", fields: [followerId], references: [id])
   FollowingUser User     @relation("following", fields: [followingId], references: [id])
 }
