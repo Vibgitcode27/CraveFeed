@@ -9,8 +9,8 @@ const prisma = new PrismaClient()
 const t = initTRPC
     .context<{
         prisma: {
-            User: typeof prisma.User;
-            Follower: typeof prisma.p;
+            User: typeof prisma.User; // Cannot Access User, Follower or any of the schema
+            Follower: typeof prisma.Follower;
             // Add other models here as needed
         };
         username?: string;
