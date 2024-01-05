@@ -257,6 +257,7 @@ input[type=text]:focus {
 .nav-buttons {
     margin-top: 2vh;
     margin-left: 50vh;
+    margin-bottom: 2vh;
 }
 
 .button{
