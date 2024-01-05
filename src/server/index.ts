@@ -50,7 +50,7 @@ const server = createHTTPServer({
         // }
     
         return{
-            prisma: { User : prismaDummy.user}
+            prisma: { User : prismaDummy.user , Follower : prismaDummy.Follower}
         } 
         // Delete this return once you un comment jwt.verify promisify function
     }
