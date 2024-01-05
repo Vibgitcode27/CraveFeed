@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react";
+import { useState } from "react";
 import "./page.css";
 import Avatar from '@mui/material/Avatar';
 import img4 from "../_assets/image6.png"
@@ -12,11 +13,9 @@ import ExploreIcon from '@mui/icons-material/Explore';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
-import SearchIcon from '@mui/icons-material/Search';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
-import SendIcon from '@mui/icons-material/Send';
+import PostInMyProfile from "../compnents/PofilePosts";
+import FollowersInMyProfile from "../compnents/ProfileFollowers";
+import FollowingInMyProfile from "../compnents/ProfileFollowing";
 
 export default function myProfile(){
     const imgp4 = img4.src
@@ -24,6 +23,7 @@ export default function myProfile(){
     const imgpP = imgP.src
     const p2r = p2.src
     const p3r = p3.src
+    const [active , setActive] = useState("POSTS")
     return (
     <div className="mainDiv">
       <section className="sec1">
@@ -93,15 +93,20 @@ export default function myProfile(){
             </div>
             <div className="secondary-div2">
                 <div className="nav-buttons">
-                    <button className="button">
+                    <button className="button" onClick={() => {setActive("POSTS");}}>
                         POSTS
                     </button>
-                    <button className="button">
+                    <button className="button" onClick={() => {setActive("FOLLOWING")}}>
                         FOLLOWING                    
                     </button>
-                    <button className="button">
+                    <button className="button" onClick={() => {setActive("FOLLOWERS")}}>
                         FOLLOWERS
                     </button>
+                </div>
+                <div className="button_result">
+                    {active === "POSTS" && <PostInMyProfile/>}
+                    {active === "FOLLOWERS" && <FollowersInMyProfile/>}
+                    {active === "FOLLOWING" && <FollowingInMyProfile/>}
                 </div>
             </div>
       </section>
