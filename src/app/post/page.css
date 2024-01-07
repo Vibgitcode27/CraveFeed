@@ -101,12 +101,17 @@ input[type=text]:focus {
     padding: 4px;
     cursor: pointer;
 }
+
+.explore > button {
+    display: flex;
+}
+
 .explore:hover {
     background-color: rgb(42, 42, 42);
     color: rgb(213, 213, 213);
 }
 
-.explore > h1 {
+.explore > button > h1 {
     margin-left: 1.5vh;
 }
 .forYou {
@@ -116,11 +121,16 @@ input[type=text]:focus {
     padding: 4px;
     cursor: pointer;
 }
+
+.forYou > button {
+    display: flex;
+}
+
 .forYou:hover {
     background-color: rgb(42, 42, 42);
     color: rgb(213, 213, 213);
 }
-.forYou > h1 {
+.forYou > button > h1 {
     margin-left: 1.5vh;
 }
 
@@ -132,13 +142,16 @@ input[type=text]:focus {
     padding: 4px;
     cursor: pointer;
 }
+.profile > button {
+    display: flex;
+}
 .profile:hover {
     background-color: rgb(42, 42, 42);
     color: rgb(213, 213, 213);
 }
 
 
-.profile > h1 {
+.profile > button > h1 {
     margin-left: 1.5vh;
 }
 
@@ -162,11 +175,9 @@ input[type=text]:focus {
 }
 
 
-
-
-
 .sec2 {
     width: 161vh;
+    margin-left: -10vh;
 }
 
 .search {
