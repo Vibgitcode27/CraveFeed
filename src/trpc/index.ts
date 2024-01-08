@@ -1,8 +1,7 @@
-import { publicProcedure , router} from "../trpc";
+import {publicProcedure, router} from "@/trpc/trpc";
 import { z } from "zod"
-import jwt, { VerifyErrors, JwtPayload } from 'jsonwebtoken';
 
-export const userRouter = router({
+export const appRouter = router({
     signUp: publicProcedure
         .input(z.object({
             username : z.string() ,
@@ -15,7 +14,7 @@ export const userRouter = router({
             let password = opts.input.password;
             let email = opts.input.email;
 
-            const newUser = await opts.ctx.prisma.User.create({
+            const newUser = await opts.ctx.prisma.Usera.create({
                 data : {
                     email ,
                     username ,
@@ -36,7 +35,7 @@ export const userRouter = router({
             let bio = opts.input.bio;
             let profilepicture = opts.input.profilepicture;
 
-            await opts.ctx.prisma.User.update({
+            await opts.ctx.prisma.Usera.update({
                 where: {
                     id: id,
                 },
@@ -56,8 +55,8 @@ export const userRouter = router({
 
             // Check if the users exist
             const [follower, following] = await Promise.all([
-                opts.ctx.prisma.User.findUnique({ where: { id: followerId } }),
-                opts.ctx.prisma.User.findUnique({ where: { id: followingId } }),
+                opts.ctx.prisma.Usera.findUnique({ where: { id: followerId } }),
+                opts.ctx.prisma.Usera.findUnique({ where: { id: followingId } }),
             ]);
 
             if (!follower || !following) {
@@ -94,8 +93,8 @@ export const userRouter = router({
             const { followerId, followingId } = opts.input;
 
             const [follower, following] = await Promise.all([
-                opts.ctx.prisma.User.findUnique({ where: { id: followerId } }),
-                opts.ctx.prisma.User.findUnique({ where: { id: followingId } }),
+                opts.ctx.prisma.Usera.findUnique({ where: { id: followerId } }),
+                opts.ctx.prisma.Usera.findUnique({ where: { id: followingId } }),
             ]);
 
             if (!follower || !following) {
@@ -107,7 +106,6 @@ export const userRouter = router({
                     followingId,
                 },
             });
-
             if (!existingRelation) {
                 throw new Error('Not following this user.');
             }
@@ -218,7 +216,7 @@ export const userRouter = router({
         }))
         .mutation(async (opts) => {
             const { userId, postId, text } = opts.input;
-            const user = await opts.ctx.prisma.User.findUnique({ //Can be removed
+            const user = await opts.ctx.prisma.Usera.findUnique({ //Can be removed
                 where: { id: userId },
             });
             const post = await opts.ctx.prisma.Post.findUnique({ //Can be removed
@@ -243,7 +241,7 @@ export const userRouter = router({
         }))
         .mutation(async (opts) => {
             const { userId, postId } = opts.input;
-            const user = await opts.ctx.prisma.User.findUnique({  //Can be removed
+            const user = await opts.ctx.prisma.Usera.findUnique({  //Can be removed
                 where: { id: userId },
             });
             const post = await opts.ctx.prisma.Post.findUnique({ //Can be removed
@@ -284,7 +282,7 @@ export const userRouter = router({
             const { userId } = opts.input;
 
             // Retrieve the user
-            const user = await opts.ctx.prisma.User.findUnique({
+            const user = await opts.ctx.prisma.Usera.findUnique({
                 where: { id: userId },
                 include: { Likes: { include: { Post: true } } },
             });
@@ -295,3 +293,5 @@ export const userRouter = router({
             return likedPosts;
         }),
 })
+
+export type AppRouter = typeof appRouter;
