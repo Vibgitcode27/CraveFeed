@@ -4,6 +4,7 @@ import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from "next/navigation";
 import { trpc } from "@/app/_trpc/client";
 import path from "path";
+import Link from "next/link";
 
 export default function Home() {
     const router = useRouter();
@@ -24,7 +25,6 @@ export default function Home() {
         // } else {
         //     router.push("/signIn");
         // }
-        router.push("/test");
     }
 
     return (

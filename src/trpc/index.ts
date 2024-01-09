@@ -11,7 +11,7 @@ export const appRouter = router({
             const userFound = await opts.ctx.prisma.Usera.findUnique({ //Can be removed
                 where: { email: username },
             });
-            if(!userFound){
+            if(userFound){
                 return {message: true};
             } else {
                 return { message: false};
@@ -26,7 +26,7 @@ export const appRouter = router({
             const userFound = await opts.ctx.prisma.UserAuth.findUnique({ //Can be removed
                 where: { email: username },
             });
-            if(!userFound){
+            if(userFound){
                 return {message: true};
             } else {
                 return { message: false};

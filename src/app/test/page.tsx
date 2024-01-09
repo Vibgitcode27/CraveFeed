@@ -10,7 +10,8 @@ export default function Test() {
     const router = useRouter();
     async function handleSignOut() {
         await signOut();
-        router.push("/");
+        // router.push("/");
+        window.location.href = '/';
     }
 
     return (
