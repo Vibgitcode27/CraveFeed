@@ -1,20 +1,30 @@
 "use client";
 
 import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from "next/navigation";
+import { trpc } from "@/app/_trpc/client";
 
 export default function Home() {
+    const router = useRouter();
     const { data: session } = useSession();
 
     async function handleSignIn() {
-        const result = await signIn('github', { callbackUrl: '/test' });
-        if (result?.error) {
-            console.error('Sign-in failed:', result.error);
-        } else {
-            console.log('Sign-in successful!');
-            console.log('Session details:', session);
-
-        }
+        await signIn();
+        // if (session) {
+        //     const mutation = trpc.signInCheck.useQuery({
+        //         username: session.user.email!,
+        //     });
+        //     const response = mutation.data;
+        //     if (response && response.message) {
+        //         router.push("/post");
+        //     } else {
+        //         router.push("/test");
+        //     }
+        // } else {
+        //     router.push("/signIn");
+        // }
     }
+
     return (
         <div>
             <button
