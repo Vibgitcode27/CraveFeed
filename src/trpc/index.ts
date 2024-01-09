@@ -2,6 +2,21 @@ import {publicProcedure, router} from "@/trpc/trpc";
 import { z } from "zod"
 
 export const appRouter = router({
+    signInCheck: publicProcedure
+        .input(z.object({
+            username: z.string(),
+        }))
+        .query(async(opts)=>{
+           let username = opts.input.username;
+            const userFound = await opts.ctx.prisma.Usera.findUnique({ //Can be removed
+                where: { email: username },
+            });
+            if(!userFound){
+                return {message: true};
+            } else {
+                return { message: false};
+            }
+        }),
     signUp: publicProcedure
         .input(z.object({
             username : z.string() ,
