@@ -17,6 +17,21 @@ export const appRouter = router({
                 return { message: false};
             }
         }),
+    authSignInCheck: publicProcedure
+        .input(z.object({
+            username: z.string(),
+        }))
+        .query(async(opts)=>{
+            let username = opts.input.username;
+            const userFound = await opts.ctx.prisma.UserAuth.findUnique({ //Can be removed
+                where: { email: username },
+            });
+            if(!userFound){
+                return {message: true};
+            } else {
+                return { message: false};
+            }
+        }),
     signUp: publicProcedure
         .input(z.object({
             username : z.string() ,

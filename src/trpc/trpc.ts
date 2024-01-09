@@ -9,6 +9,7 @@ const t = initTRPC.context<{ prisma: {
         Post: typeof prisma.post,
         Like: typeof prisma.like,
         Comment: typeof prisma.comment,
+        UserAuth: typeof prisma.user,
     } ; username?: string; }>().create();
 
 export const router = t.router;

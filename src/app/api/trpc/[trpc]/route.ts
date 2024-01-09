@@ -11,7 +11,7 @@ const handler = (req : Request) =>
         endpoint: '/api/trpc',
         router: appRouter,
         createContext: ()=> ({
-            prisma: { Usera : prisma.usera , Post: prisma.post, Follower: prisma.follower, Like: prisma.like, Comment: prisma.comment}
+            prisma: { Usera : prisma.usera , Post: prisma.post, Follower: prisma.follower, Like: prisma.like, Comment: prisma.comment, UserAuth: prisma.user}
         }),
     });
 
