@@ -2,6 +2,14 @@ import {publicProcedure, router} from "@/trpc/trpc";
 import { z } from "zod"
 
 export const appRouter = router({
+    test : publicProcedure
+        .input(z.object({
+            counterRPC : z.number()
+        }))
+        .query(async(opts) => {
+            let counterRPC = opts.input.counterRPC;
+            return counterRPC;
+        }),
     signInCheck: publicProcedure
         .input(z.object({
             username: z.string(),

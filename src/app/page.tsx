@@ -3,9 +3,9 @@
 import { trpc } from './_trpc/client';
 import {z} from "zod";
 import {useQueryClient} from "@tanstack/react-query";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import { useAppDispatch, useAppSelector } from './globalRedux/hooks';
-import { increment } from './globalRedux/features/counters/counterSlice';
+import { increment , addAnyValue } from './globalRedux/features/counters/counterSlice';
 
 export default function Home() {
 
@@ -28,7 +28,13 @@ export default function Home() {
     // }
     const [inputValue, setInputValue] = useState('');
     const { data: users, isLoading, isFetching } = trpc.authSignInCheck.useQuery({ username: "shashwat123student@gmail.com" });
+    const counterRPC = trpc.test.useQuery({counterRPC : 20})
 
+    useEffect(() => {
+        if(counterRPC.data) {
+            dispatch(addAnyValue(counterRPC.data))
+        }
+    })
     const queryClient = useQueryClient();
 
     function handleClick() {
