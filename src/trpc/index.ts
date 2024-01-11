@@ -10,6 +10,19 @@ export const appRouter = router({
             let counterRPC = opts.input.counterRPC;
             return counterRPC;
         }),
+
+    getUserById : publicProcedure
+        .input(z.object({
+            id : z.number()
+        }))
+        .query(async(opts) => {
+            let userdata = opts.ctx.prisma.Usera.findUnique({
+                where : { id : opts.input.id}
+            })
+
+            return userdata;
+        }),
+
     signInCheck: publicProcedure
         .input(z.object({
             username: z.string(),

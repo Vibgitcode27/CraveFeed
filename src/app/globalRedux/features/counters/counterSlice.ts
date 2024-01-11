@@ -8,6 +8,14 @@ const initialState : counterType =  {
     value : 0,
 }
 
+export interface commandType {
+    loading : boolean;
+}
+
+const initialState2 : commandType = {
+    loading : false
+}
+
 const counterSlice = createSlice({
     name : "counter" ,
     initialState ,
@@ -23,6 +31,16 @@ const counterSlice = createSlice({
         }
     }
 });
+
+const commandSlice = createSlice({
+    name : "command" ,
+    initialState : initialState2 ,
+    reducers : {
+        showData(state) {
+            state.loading = true;
+        }
+    }
+})
 
 export const {increment , decrement , addAnyValue} = counterSlice.actions;
 export default counterSlice.reducer;

@@ -2,7 +2,7 @@
 
 import Explore from "../explore/page";
 import MyProfile from "../profile/page";
-import React from "react";
+import React, { useEffect } from "react";
 import "./page.css";
 import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
@@ -15,7 +15,10 @@ import p3 from "../../_assets/post3.webp"
 import ExploreIcon from '@mui/icons-material/Explore';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import PersonIcon from '@mui/icons-material/Person';
+import { useAppSelector , useAppDispatch } from "@/app/globalRedux/hooks";
 import LogoutIcon from '@mui/icons-material/Logout';
+import { trpc } from "@/app/_trpc/client";
+import { currentUser } from "@/app/globalRedux/features/users/loginUser";
 
 export default function SignUp() {
     const imgp4 = img4.src
@@ -24,6 +27,23 @@ export default function SignUp() {
     const p2r = p2.src
     const p3r = p3.src
     const [active , setActive] = useState("EXPLORE")
+
+    // STATES
+    const dispatch = useAppDispatch()
+    
+    const user = trpc.getUserById.useQuery({id : 1})
+    
+    useEffect(() => {
+        if(user.data)
+        {
+            dispatch(currentUser(user.data))
+        }
+    })
+
+    const email = useAppSelector((state) => state.currentUser.user.email)
+    const id = useAppSelector((state) => state.currentUser.user.id)
+    const username = useAppSelector((state) => state.currentUser.user.username)
+
     return (
     <div className="mainDiv">
       <section className="sec1">
@@ -31,7 +51,7 @@ export default function SignUp() {
             <Avatar alt="Remy Sharp" src={imgp4} style={{position : "relative" , width : "13vh" , height : "13vh" , marginTop : "9vh" , marginLeft : "16vh" , border: "2px solid black"}}/>
             <div className="username">
                 <h1>Ivanka James</h1>
-                <h2>@ivankajames</h2>
+                <h2>{username}</h2>
             </div>
             <div className="follow">
                 <div className="post">
