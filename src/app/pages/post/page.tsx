@@ -1,25 +1,21 @@
 "use client"
 
-import Explore from "../Explore/page";
-import MyProfile from "../Profile/page";
+import Explore from "../explore/page";
+import MyProfile from "../profile/page";
 import React from "react";
 import "./page.css";
 import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
-import img4 from "../_assets/image6.png"
-import imgP from "../_assets/post1.webp"
-import img6 from "../_assets/image4.jpg"
-import p2 from "../_assets/post2.webp"
-import p3 from "../_assets/post3.webp"
+// import img4 from "../../_assets/image6.png"
+import img4 from "../../_assets/image6.png"
+import imgP from "../../_assets/post1.webp"
+import img6 from "../../_assets/image4.jpg"
+import p2 from "../../_assets/post2.webp"
+import p3 from "../../_assets/post3.webp"
 import ExploreIcon from '@mui/icons-material/Explore';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
-import SearchIcon from '@mui/icons-material/Search';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
-import SendIcon from '@mui/icons-material/Send';
 
 export default function SignUp() {
     const imgp4 = img4.src

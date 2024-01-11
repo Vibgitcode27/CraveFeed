@@ -4,11 +4,11 @@ import React from "react";
 import "./page.css";
 import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
-import img4 from "../_assets/image6.png"
-import imgP from "../_assets/post1.webp"
-import img6 from "../_assets/image4.jpg"
-import p2 from "../_assets/post2.webp"
-import p3 from "../_assets/post3.webp"
+import img4 from "../../_assets/image6.png"
+import imgP from "../../_assets/post1.webp"
+import img6 from "../../_assets/image4.jpg"
+import p2 from "../../_assets/post2.webp"
+import p3 from "../../_assets/post3.webp"
 import ExploreIcon from '@mui/icons-material/Explore';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import PersonIcon from '@mui/icons-material/Person';
