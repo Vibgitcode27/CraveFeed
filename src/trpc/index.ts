@@ -10,7 +10,7 @@ export const appRouter = router({
             let counterRPC = opts.input.counterRPC;
             return counterRPC;
         }),
-
+        // POST PAGES
     getUserById : publicProcedure
         .input(z.object({
             id : z.number()
@@ -22,7 +22,17 @@ export const appRouter = router({
 
             return userdata;
         }),
+    getFollowersById : publicProcedure
+        .input(z.object({
+            id : z.number()
+        }))
+        .query(async (opts) => {
+            let followerData = opts.ctx.prisma.Follower.findMany({
+                where : { followingId : opts.input.id}
+            })
 
+            return followerData
+        }),
     signInCheck: publicProcedure
         .input(z.object({
             username: z.string(),

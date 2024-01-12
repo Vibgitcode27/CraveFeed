@@ -3,6 +3,7 @@ CREATE TABLE "Usera" (
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
     "username" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "profilepicture" TEXT,
     "bio" TEXT,

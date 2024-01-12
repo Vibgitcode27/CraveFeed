@@ -5,6 +5,13 @@ export interface counterType {
         id : number | null,
         email : string ,
         username : string ,
+        name : string ,
+        followers : {
+            id : number | null,
+            followerId : number | null,
+            followingId : number | null
+        },
+        numberOfFollowers : number
     }
 }
 
@@ -12,7 +19,14 @@ const initialState : counterType =  {
     user :  {
         id : null,
         email : 'nil',
-        username : 'nil',
+        username : '',
+        name : "--" ,
+        followers : {
+            id : null,
+            followerId : null,
+            followingId : null
+        },
+        numberOfFollowers : 0,
     }
 }
 
@@ -23,6 +37,10 @@ const userSlice = createSlice({
         currentUser(state , action) {
             state.user = action.payload
         } ,
+        followersUser(state , action)
+        {
+            state.user.numberOfFollowers = action.payload.Follower.length;
+        }
     }
 });
 
