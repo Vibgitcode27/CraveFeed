@@ -19,8 +19,9 @@ import { useAppSelector , useAppDispatch } from "@/app/globalRedux/hooks";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { trpc } from "@/app/_trpc/client";
 import { currentUser } from "@/app/globalRedux/features/users/loginUser";
+import { followersUser , followingUsers , userPosts } from "@/app/globalRedux/features/users/postPageUser";
 import CircularProgress from '@mui/material/CircularProgress';
-import followersUser from "@/app/globalRedux/features/users/followersUser";
+import { useSelector } from "react-redux";
 
 export default function SignUp() {
     const imgp4 = img4.src
@@ -35,7 +36,10 @@ export default function SignUp() {
     
     const user = trpc.getUserById.useQuery({id : 1})
     const follower = trpc.getFollowersById.useQuery({id: 1});
-    console.log(follower);
+    const following = trpc.getFollowingById.useQuery({id : 1});
+    const post = trpc.getPostsById.useQuery({id: 1})
+    
+    
     // Storing States 
 
     useEffect(() => {
@@ -45,17 +49,35 @@ export default function SignUp() {
         }
     })
 
-    // useEffect(() => {
-    //     if(follower.data)
-    //     {
-    //         dispatch(followersUser(follower.data))
-    //     }
-    // })
+    useEffect(() => {
+        if(follower.data)
+        {
+            dispatch(followersUser(follower.data?.length))
+        }
+    })
+
+    useEffect(() => {
+        if(following.data)
+        {
+            dispatch(followingUsers(following.data?.length))
+        }
+    })
+
+    useEffect(() => {
+        if(post.data)
+        {
+            dispatch(userPosts(post.data?.length))
+        }
+    })
+    // Fetching State Values
 
     const id = useAppSelector((state) => state.currentUser.user.id);
     const username = useAppSelector((state) => state.currentUser.user.username);
     const name = useAppSelector((state) => state.currentUser.user.name);
-    const followers = useAppSelector((state) => state.currentUser.user.numberOfFollowers)
+    const followers = useAppSelector((state) => state.userFollowers.numberOfFollowers);
+    const followings = useAppSelector((state) => state.userFollowing.followingNumbers);
+    const posts = useAppSelector((state) => state.userPost.postCount)
+
 
     return (
     <div className="mainDiv">
@@ -72,11 +94,15 @@ export default function SignUp() {
             </div>
             <div className="follow">
                 <div className="post">
-                    <h1>50</h1>
+                <h1>{posts !== 0 ? (
+                        posts
+                    ) : (
+                        0
+                    )}</h1>
                     <h3>Post</h3>
                 </div>
                 <div className="followers">
-                    <h1>{followers === null ? (
+                    <h1>{followers !== 0 ? (
                         followers
                     ) : (
                         0
@@ -84,7 +110,11 @@ export default function SignUp() {
                     <h3>Followers</h3>
                 </div>
                 <div className="following">
-                    <h1>600</h1>
+                <h1>{followings !== 0 ? (
+                        followings
+                    ) : (
+                        0
+                    )}</h1>
                     <h3>Following</h3>
                 </div>
             </div>

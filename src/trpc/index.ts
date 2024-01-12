@@ -1,3 +1,4 @@
+import { trpc } from "@/app/_trpc/client";
 import {publicProcedure, router} from "@/trpc/trpc";
 import { z } from "zod"
 
@@ -33,6 +34,27 @@ export const appRouter = router({
 
             return followerData
         }),
+    getFollowingById : publicProcedure
+        .input(z.object({
+            id : z.number()
+        }))
+        .query(async (opts) => {
+            let followingData = opts.ctx.prisma.Follower.findMany({
+                where : { followerId : opts.input.id }
+            })
+            return followingData
+        }),
+    getPostsById : publicProcedure
+        .input(z.object({
+            id : z.number()
+        }))
+        .query(async (opts) => {
+            let postData = opts.ctx.prisma.Post.findMany({
+                where : { userId : opts.input.id}
+            })
+            return postData
+        }),
+        
     signInCheck: publicProcedure
         .input(z.object({
             username: z.string(),
@@ -176,36 +198,6 @@ export const appRouter = router({
                 },
             });
             return { success: true }; // To test the code remove later
-        }),
-    getfollowers: publicProcedure
-        .input(z.object({
-            Id: z.number(),
-        }))
-        .mutation(async (opts) => {
-            let userId = opts.input.Id;
-
-            const followers = await opts.ctx.prisma.Follower.findMany({
-                where: {
-                    followingId: userId,
-                },
-            });
-
-            return { followers };
-        }),
-    getfollowing: publicProcedure
-        .input(z.object({
-            Id: z.number(),
-        }))
-        .mutation(async (opts) => {
-            let userId = opts.input.Id;
-
-            const following = await opts.ctx.prisma.Follower.findMany({
-                where: {
-                    followerId: userId,
-                },
-            });
-
-            return { following };
         }),
     newPost: publicProcedure
         .input(z.object({

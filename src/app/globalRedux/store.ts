@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "./features/counters/counterSlice"
 import currentUserReducer from "./features/users/loginUser";
-import userFollowersReducer from "./features/users/followersUser"
+import { followerSlice , followingSlice ,postSlice } from "./features/users/postPageUser";
 export const makeStore = () => {
     return configureStore({
         reducer : {
             counter : counterReducer,
             currentUser : currentUserReducer,
-            userFollowers : userFollowersReducer,
+            userFollowers : followerSlice.reducer,
+            userFollowing : followingSlice.reducer,
+            userPost : postSlice.reducer
         }
     })
 }
