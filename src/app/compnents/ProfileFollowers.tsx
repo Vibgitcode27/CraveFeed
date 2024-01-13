@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Avatar } from "@mui/material";
 import img4 from "../_assets/image5.jpg"
 import img1 from "../_assets/image7.jpg"
@@ -6,9 +6,38 @@ import img2 from "../_assets/image4.jpg"
 import img3 from "../_assets/image6.png"
 import img5 from "../_assets/image2.jpg"
 import "../styles/ProfileFollowers.css"
-
+import { useAppDispatch, useAppSelector } from "../globalRedux/hooks";
+import { trpc } from "../_trpc/client";
+import { userFollowingData } from "../globalRedux/features/users/postPageUser";
+import { userFollowersData } from "../globalRedux/features/users/postPageUser";
 export default function FollowersInMyProfile(){
 
+    const dispatch = useAppDispatch();
+
+    // const following = trpc.getFollowingById.useQuery({id : 1})
+    // // console.log(following)
+
+    // useEffect(() => {
+    //     if(following.data)
+    //     {
+    //         dispatch(userFollowingData(following.data))
+    //     }
+    // })
+
+    // const followings = useAppSelector((state) => state.followingData.following.followingId)
+    
+    const follower = trpc.getFollowersById.useQuery({ id : 1})
+
+    console.log(follower)
+    // useEffect(() => {
+    //     if(follower.data)
+    //     {
+    //         dispatch(userFollowersData(follower.data))
+    //     }
+    // }, [follower])
+
+    // const fetchedProfile = useAppSelector((state) => state.followersData.followers)
+    
     const fetchedProfile = [
         {
             h1 : "Ivanka James",

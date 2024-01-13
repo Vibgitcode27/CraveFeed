@@ -98,11 +98,65 @@ export const postSlice = createSlice({
         }
     }
 })
+
+interface followingDataType {
+    following : {
+        id : number | null,
+        followerId : number | null,
+        followingId : number | null
+    }
+}
+
+const initialStateFollowingData : followingDataType =  {
+    following : {
+        id : null,
+        followerId : null,
+        followingId : null
+    }
+}
+
+export const followingDataSlice = createSlice({
+    name : "followingData" ,
+    initialState : initialStateFollowingData ,
+    reducers : {
+        userFollowingData(state , action) {
+            state.following = action.payload
+        }
+    }
+})
+
+interface followersDataType {
+    followers : {
+        id : number,
+        followerId : number,
+        followingId : number
+    }[]
+}
+
+const initialStateFollowersData : followersDataType =  {
+    followers : []
+}
+
+export const followersDataSlice = createSlice({
+    name : "followersData" ,
+    initialState : initialStateFollowersData ,
+    reducers : {
+        userFollowersData(state , action) {
+            state.followers = action.payload
+        }
+    }
+})
+
 export const { followersUser } = followerSlice.actions;
 export const { followingUsers } = followingSlice.actions;
 export const { userPosts } = postSlice.actions;
+export const { userFollowingData } = followingDataSlice.actions;
+export const { userFollowersData } = followersDataSlice.actions;
+
 export default {
     follower : followerSlice.reducer ,
     following : followingSlice.reducer ,
-    posts : postSlice.reducer
+    posts : postSlice.reducer,
+    followingData : followingDataSlice.reducer,
+    followersData : followersDataSlice.reducer
 }

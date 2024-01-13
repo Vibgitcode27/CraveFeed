@@ -8,10 +8,6 @@ import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
 // import img4 from "../../_assets/image6.png"
 import img4 from "../../_assets/image6.png"
-import imgP from "../../_assets/post1.webp"
-import img6 from "../../_assets/image4.jpg"
-import p2 from "../../_assets/post2.webp"
-import p3 from "../../_assets/post3.webp"
 import ExploreIcon from '@mui/icons-material/Explore';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import PersonIcon from '@mui/icons-material/Person';
@@ -21,14 +17,9 @@ import { trpc } from "@/app/_trpc/client";
 import { currentUser } from "@/app/globalRedux/features/users/loginUser";
 import { followersUser , followingUsers , userPosts } from "@/app/globalRedux/features/users/postPageUser";
 import CircularProgress from '@mui/material/CircularProgress';
-import { useSelector } from "react-redux";
 
 export default function SignUp() {
     const imgp4 = img4.src
-    const imgp7 = img6.src
-    const imgpP = imgP.src
-    const p2r = p2.src
-    const p3r = p3.src
     const [active , setActive] = useState("EXPLORE")
 
     // Fetching data frombackend

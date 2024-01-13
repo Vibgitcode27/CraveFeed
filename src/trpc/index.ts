@@ -29,9 +29,11 @@ export const appRouter = router({
         }))
         .query(async (opts) => {
             let followerData = opts.ctx.prisma.Follower.findMany({
-                where : { followingId : opts.input.id}
+                where : { followingId : opts.input.id},
+                include : {
+                    FollowingUser : true
+                },
             })
-
             return followerData
         }),
     getFollowingById : publicProcedure
