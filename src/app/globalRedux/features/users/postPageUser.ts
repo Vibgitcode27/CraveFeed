@@ -101,18 +101,21 @@ export const postSlice = createSlice({
 
 interface followingDataType {
     following : {
-        id : number | null,
-        followerId : number | null,
-        followingId : number | null
-    }
+        id : number,
+        followerId : number,
+        followingId : number,
+        FollowingUser : {
+            id : number ,
+            email : string ,
+            username : string,
+            name : string,
+            password : string
+        }
+    }[]
 }
 
 const initialStateFollowingData : followingDataType =  {
-    following : {
-        id : null,
-        followerId : null,
-        followingId : null
-    }
+        following : []
 }
 
 export const followingDataSlice = createSlice({
@@ -129,7 +132,14 @@ interface followersDataType {
     followers : {
         id : number,
         followerId : number,
-        followingId : number
+        followingId : number,
+        Usera : {
+            id : number ,
+            email : string ,
+            username : string,
+            name : string,
+            password : string
+        }
     }[]
 }
 

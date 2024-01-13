@@ -15,7 +15,7 @@ export default function FollowersInMyProfile(){
     const dispatch = useAppDispatch();
 
     // const following = trpc.getFollowingById.useQuery({id : 1})
-    // // console.log(following)
+    // console.log(following)
 
     // useEffect(() => {
     //     if(following.data)
@@ -24,60 +24,64 @@ export default function FollowersInMyProfile(){
     //     }
     // })
 
-    // const followings = useAppSelector((state) => state.followingData.following.followingId)
+    // const fetchedProfile = useAppSelector((state) => state.followingData.following.followingId)
     
     const follower = trpc.getFollowersById.useQuery({ id : 1})
 
-    console.log(follower)
-    // useEffect(() => {
-    //     if(follower.data)
-    //     {
-    //         dispatch(userFollowersData(follower.data))
-    //     }
-    // }, [follower])
-
-    // const fetchedProfile = useAppSelector((state) => state.followersData.followers)
-    
-    const fetchedProfile = [
+    useEffect(() => {
+        if(follower.data)
         {
-            h1 : "Ivanka James",
-            h2 : "@ivankajames",
-            img : img3
-        },
-        {
-            h1 : "Big Bundah Girl",
-            h2 : "@bigBgirl",
-            img : img1 
-        },
-        {
-            h1 : "GlizzyGobbler",
-            h2 : "@GZperiod",
-            img : img2
-        },
-        {
-            h1 : "Tiny Weenie",
-            h2 : "@teeniweeni",
-            img : img4    
-        },
-        {
-            h1 : "Bob Loader",
-            h2 : "@BLnigger",
-            img : img3
-        },
-        {
-            h1 : "Dee Snuts",
-            h2 : "@DjNutter",
-            img : img5
+            dispatch(userFollowersData(follower.data))
         }
-    ]
+    }, [follower])
+    
+    const fetchedProfile = useAppSelector((state) => state.followersData.followers)
+    console.log(fetchedProfile)
+    
+    // const fetchedProfile = [
+    //     {
+    //         h1 : "Ivanka James",
+    //         h2 : "@ivankajames",
+    //         img : img3
+    //     },
+    //     {
+    //         h1 : "Big Bundah Girl",
+    //         h2 : "@bigBgirl",
+    //         img : img1 
+    //     },
+    //     {
+    //         h1 : "GlizzyGobbler",
+    //         h2 : "@GZperiod",
+    //         img : img2
+    //     },
+    //     {
+    //         h1 : "Tiny Weenie",
+    //         h2 : "@teeniweeni",
+    //         img : img4    
+    //     },
+    //     {
+    //         h1 : "Bob Loader",
+    //         h2 : "@BLnigger",
+    //         img : img3
+    //     },
+    //     {
+    //         h1 : "Dee Snuts",
+    //         h2 : "@DjNutter",
+    //         img : img5
+    //     }
+    // ]
     return(
         <div className="follower-main-div">
                 {fetchedProfile.map((value, index) => (
                     <div>
-                    <Avatar alt="Profile Pic" src={value.img.src} style={{position : "relative" , width : "10vh" , height : "10vh" , marginTop : "1vh" , marginLeft : "16vh" , border: "2px solid black"}}/>
+                    <Avatar alt="Profile Pic" src={img4.src} style={{position : "relative" , width : "10vh" , height : "10vh" , marginTop : "1vh" , marginLeft : "16vh" , border: "2px solid black"}}/>
                 <div className="follower-profile">
-                    <h1>{value.h1}</h1>
-                    <h2>{value.h2}</h2>
+                    {/* <h1>{value.FollowingUser.name}</h1> */}
+                    <h1>{value.Usera.name}</h1>
+
+                    {/* <h2>{value.FollowingUser.username}</h2> */}
+                    <h2>{value.Usera.username}</h2>
+
                 </div>
                 <button>Remove</button>
                 </div>))

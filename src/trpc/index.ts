@@ -18,7 +18,7 @@ export const appRouter = router({
         }))
         .query(async(opts) => {
             let userdata = opts.ctx.prisma.Usera.findUnique({
-                where : { id : opts.input.id}
+                where : { id : opts.input.id} ,
             })
 
             return userdata;
@@ -31,7 +31,7 @@ export const appRouter = router({
             let followerData = opts.ctx.prisma.Follower.findMany({
                 where : { followingId : opts.input.id},
                 include : {
-                    FollowingUser : true
+                    Usera : true
                 },
             })
             return followerData
@@ -42,7 +42,10 @@ export const appRouter = router({
         }))
         .query(async (opts) => {
             let followingData = opts.ctx.prisma.Follower.findMany({
-                where : { followerId : opts.input.id }
+                where : { followerId : opts.input.id },
+                include : {
+                    FollowingUser : true
+                }
             })
             return followingData
         }),
