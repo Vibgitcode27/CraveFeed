@@ -79,7 +79,7 @@ export default function SignUp() {
                 <h1>{id !== null ? (
                         name
                     ) : (
-                        <CircularProgress color="inherit" size={35}/>
+                        <CircularProgress color="inherit" size={35} sx={{marginLeft : 4.5}}/>
                     )}</h1>
                 <h2>{username}</h2>
             </div>

@@ -16,6 +16,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite'
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import SendIcon from '@mui/icons-material/Send';
 
@@ -48,20 +49,20 @@ export default function Explore() {
                         {/* This is post content div */}
 
                         <div className="content-post">
-                            <div style={{display : "flex"}}>
+                            <div className = "post-div1" style={{display : "flex"}}>
                                 <Avatar alt="Remy Sharp" src={imgp7} style={{position : "relative" , width : "7vh" , height : "7vh" , marginTop : "1vh" , marginBottom : "1vh" , marginLeft : "2vh"}}/>
                                 <h2>Big bundah Girl</h2>
                             </div>
                                 <img src={imgpP} alt="" />
                             <div className="reactions">
-                                <FavoriteBorderIcon/>
+                                <FavoriteIcon style={{color : "crimson"}}/>
                                 <ChatBubbleIcon style={{marginLeft : "3vh"}}/>
                                 <SendIcon style={{marginLeft : "3vh"}}/>
                             </div>
                         </div>
 
                         <div className="content-post">
-                            <div style={{display : "flex"}}>
+                            <div className = "post-div1" style={{display : "flex"}}>
                                 <Avatar alt="Remy Sharp" src={imgp7} style={{position : "relative" , width : "7vh" , height : "7vh" , marginTop : "1vh" , marginBottom : "1vh" , marginLeft : "2vh"}}/>
                                 <h2>Big bundah Girl</h2>
                             </div>
@@ -74,7 +75,7 @@ export default function Explore() {
                         </div>
 
                         <div className="content-post">
-                            <div style={{display : "flex"}}>
+                            <div className = "post-div1" style={{display : "flex"}}>
                                 <Avatar alt="Remy Sharp" src={imgp7} style={{position : "relative" , width : "7vh" , height : "7vh" , marginTop : "1vh" , marginBottom : "1vh" , marginLeft : "2vh"}}/>
                                 <h2>Big bundah Girl</h2>
                             </div>
@@ -85,11 +86,10 @@ export default function Explore() {
                                 <SendIcon style={{marginLeft : "3vh"}}/>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div className="creator">
-                    <img src={imgp7} alt="" />
+                    <Avatar alt="Remy Sharp" src={imgp7} style={{position : "relative" , width : "30vh" , height : "30vh" , marginTop : "2vh", justifyContent : "center", marginLeft : "8vh" , border : "2px solid black"}}/>
                     <h2>Big bundah Girl</h2>
                     <div style={{display : "flex" , marginTop : "1vh"}}>
                         <div className="creator-followers">
