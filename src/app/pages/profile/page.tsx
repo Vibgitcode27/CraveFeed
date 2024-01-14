@@ -14,11 +14,24 @@ import PostInMyProfile from "@/app/compnents/PofilePosts";
 import FollowersInMyProfile from "@/app/compnents/ProfileFollowers";
 import FollowingInMyProfile from "@/app/compnents/ProfileFollowing";
 import { useAppSelector } from "@/app/globalRedux/hooks";
+import { Modal , Box , Typography , TextField } from "@mui/material";
+
+const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'red',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
 
 export default function MyProfile(){
     const imgp4 = img4.src
     const [active , setActive] = useState("POSTS")
-
+    const [open, setOpen] = useState(false);
     const id = useAppSelector((state) => state.currentUser.user.id)
     const username = useAppSelector((state) => state.currentUser.user.username);
     const name = useAppSelector((state) => state.currentUser.user.name);
@@ -65,7 +78,7 @@ export default function MyProfile(){
                                     )}</h1>
                             <h3>Following</h3>
                         </div>
-                        <button className="Edit-Profile">Edit Profile</button>
+                        <button className="Edit-Profile" onClick={() => setOpen(true)}>Edit Profile</button>
                     </div>
                     <p>Ivanka James: Culinary maven weaving flavors into unforgettable symphonies, turning every meal into a celebration of taste and culture.</p>
                 </div>
@@ -89,6 +102,16 @@ export default function MyProfile(){
                 </div>
             </div>
       </section>
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+        </Box>
+      </Modal>
     </div>
   )
 }

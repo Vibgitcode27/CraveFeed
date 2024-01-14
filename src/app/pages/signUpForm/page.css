@@ -1,12 +1,14 @@
 .main-div {
-    background-color: #bdc3c7;
+    background-color: white;
     padding: 5vh 40vh;
 }
 
 .sub-div {
     height: 90vh;
     border-radius: 40px;
-    background-color: #ecf0f1;
+    background-color: rgb(233, 233, 233);
+    border: 2px solid black;
+    box-shadow: 10px 5px 5px rgb(214, 214, 214);
 }
 
 .sub-div > h2 {
@@ -26,7 +28,7 @@
     margin-left: 23vh;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: larger;
-    color: #ed7253;
+    color: #090909;
 }
 
 .inputs > input {
@@ -98,12 +100,17 @@
 }
 
 .sub-div > button {
-    border: 2px solid #4f4f4f;
+    border: 2px solid #000000;
     padding: 0.5vh 4vh;
     font-size: 2.5vh;
     border-radius: 15vh;
     margin-top: 3vh;
     margin-left: 87vh;
-    background-color: #0e0e0ed0; /* Updated background color */
-    color: #ffffff;
+    background-color: #ffffffd0; /* Updated background color */
+    color: #000000;
+}
+
+.sub-div > button:hover {
+    background-color: #000000; /* Updated background color */
+    color: rgb(255, 255, 255)
 }
