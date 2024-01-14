@@ -182,13 +182,14 @@ input[type=text]:focus {
 .profileInfo > h1 {
     font-weight: bold;
     margin-top: 2vh;
-    margin-left: 20vh;
+    margin-left: 17vh;
     font-size: 20px;
+    color: rgb(2, 2, 2);
 }
 
 .profileInfo > h2 {
-    margin-left: 20vh;
-    font-size: 17px;
+    margin-left: 18vh;
+    font-size: 16px;
     color: rgba(0, 0, 0, 0.597);
 }
 
@@ -205,6 +206,23 @@ input[type=text]:focus {
     padding-top: 3vh;
     margin-left: 10vh;
 }
+
+.Edit-Profile {
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    width: 22vh;
+    height: 6vh;
+    position: relative;
+    top: -10vh;
+    left: 5vh;
+}
+
+.Edit-Profile:hover {
+    border: none;
+    background-color: black;
+    color: white;
+}
+
 .profile-post {
     border-right: 2px solid rgba(152, 150, 150, 0.597);
 }
@@ -217,7 +235,7 @@ input[type=text]:focus {
 
 .profile-post > h3 {
     font-size: 15px;
-    padding-left: 3px;
+    margin-left: -0.5vh;
 }
 
 .profile-followers {
@@ -227,25 +245,25 @@ input[type=text]:focus {
 .profile-followers > h1 {
     font-size: 20px;
     font-weight: bolder;
-    padding-right: 5vh;
-    padding-left: 30px;
+    padding-right: 8.5vh;
+    padding-left: 6vh;
 }
 
 .profile-followers > h3 {
     font-size: 15px;
-    padding-left: 20px;
+    padding-left: 3vh;  
 }
 
 .profile-following > h1 {
     font-size: 20px;
     font-weight: bolder;
-    padding-right: 10vh;
-    padding-left: 35px;
+    padding-right: 0vh;
+    padding-left: 5vh;
 }
 
 .profile-following > h3 {
     font-size: 15px;
-    padding-left: 25px;
+    padding-left: 2vh;
 }
 
 .secondary-div2 {
@@ -256,18 +274,22 @@ input[type=text]:focus {
 
 .nav-buttons {
     margin-top: 2vh;
-    margin-left: 50vh;
+    margin-left: 47vh;
     margin-bottom: 2vh;
+    font-size: 14px;
 }
 
 .button{
-    padding-right: 10vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
+    height: 4vh;
+
+    /* margin-right: 5vh; */
 }
 
-.button{
-    padding-right: 10vh;
-}
-
-.button{
-    padding-right: 10vh;
+.button:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    height: 4vh;
+    border-radius: 5px;    
 }

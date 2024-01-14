@@ -35,16 +35,18 @@ export default function MyProfile(){
                     <h1>{id !== null ? (
                         name
                     ) : (
-                        <CircularProgress color="inherit" size={35}/>
-                    )}</h1>
-                <h2>{username}</h2>
+                        <CircularProgress color="inherit" size={35} sx={{marginLeft : 5}}/>
+                        // "Ivanka James"
+                        )}</h1>
+                    <h2>{username}</h2>
+                    {/* <h2>@vibhorhalke</h2> */}
                     <div className="profile-follow">
                         <div className="profile-post">
                             <h1>{posts !== 0 ? (
                                 posts
                                 ) : (
-                                  0
-                            )}</h1>
+                                    0
+                                    )}</h1>
                             <h3>Post</h3>
                         </div>
                         <div className="profile-followers">
@@ -52,7 +54,7 @@ export default function MyProfile(){
                                 followers
                                 ) : (
                                     0
-                            )}</h1>
+                                    )}</h1>
                             <h3>Followers</h3>
                         </div>
                         <div className="profile-following">
@@ -60,9 +62,10 @@ export default function MyProfile(){
                                 followings
                                 ) : (
                                     0
-                            )}</h1>
+                                    )}</h1>
                             <h3>Following</h3>
                         </div>
+                        <button className="Edit-Profile">Edit Profile</button>
                     </div>
                     <p>Ivanka James: Culinary maven weaving flavors into unforgettable symphonies, turning every meal into a celebration of taste and culture.</p>
                 </div>

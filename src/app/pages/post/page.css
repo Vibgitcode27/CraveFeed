@@ -10,12 +10,14 @@ input[type=text]:focus {
     width: 50vh;
     height: 100vh;
     background-color: rgb(233, 233, 233);
+    box-shadow: 4px 2px 5px rgba(133, 133, 133, 0.338);
 }
 
 .sec1 > div {
     width: 40vh;
     margin: auto;
     margin-top: 2vh;
+    
 }
 
 .username > h1 {
@@ -202,6 +204,7 @@ input[type=text]:focus {
     border-radius: 2vh;
     width: 50vh;
     height: 8.5vh;
+    box-shadow: 4px 2px 5px rgba(116, 116, 116, 0.338);
 }
 
 .searchBox > input {

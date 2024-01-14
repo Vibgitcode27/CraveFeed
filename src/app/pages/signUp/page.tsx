@@ -1,9 +1,9 @@
 import React from "react";
 import "./page.css";
-import img1 from "../_assets/image5.jpg";
-import img2 from "../_assets/image7.jpg"
-import img3 from "../_assets/image4.jpg"
-import img4 from "../_assets/image6.png"
+import img1 from "../../_assets/image5.jpg";
+import img2 from "../../_assets/image7.jpg"
+import img3 from "../../_assets/image4.jpg"
+import img4 from "../../_assets/image6.png"
 import LockPersonIcon from '@mui/icons-material/LockPerson';
 
 export default function SignUp() {
