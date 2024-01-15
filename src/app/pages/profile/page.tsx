@@ -15,7 +15,6 @@ import FollowersInMyProfile from "@/app/compnents/ProfileFollowers";
 import FollowingInMyProfile from "@/app/compnents/ProfileFollowing";
 import { useAppSelector } from "@/app/globalRedux/hooks";
 import { Modal , Box , Typography , TextField } from "@mui/material";
-import SignUpForm from "../signUpForm/page";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -149,7 +148,7 @@ export default function MyProfile(){
         <div className="sub-div">
                 <h2>Edit Profile</h2>
                     <div className="Upload-button" style={{display : "flex"}}>
-                        <Avatar alt="Profile Pic" src={image} style={{position : "relative" , width : "14vh" , height : "14vh" , marginTop : "-2vh" , marginLeft : "30vh" , border: "2px solid white"}}/>
+                        <Avatar alt="Profile Pic" src={image} style={{position : "relative" , width : "14vh" , height : "14vh" , marginTop : "-2vh" , marginLeft : "30vh" , border: "2px solid black"}}/>
                         <div className="Upload-button-div">
                             <input type="file" onChange={handleImageChange} className="input-file" />
                         </div>

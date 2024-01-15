@@ -306,9 +306,9 @@ input[type=text]:focus {
 .sub-div {
     height: 90vh;
     border-radius: 40px;
-    background-color: rgb(0, 0, 0);
-    border: 2px solid black;
-    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.112);
+    background-color: rgb(247, 247, 247);
+    border: 3px solid black;
+    box-shadow: 10px 5px 5px rgba(214, 214, 214, 0.05);
 }
 
 .sub-div > h2 {
@@ -316,7 +316,7 @@ input[type=text]:focus {
     margin-left: 56vh;
     font-size: 30px;
     margin-bottom: 5vh;
-    color: #e3e3e3;
+    color: #101010;
 }
 
 .sub-div > h2 > span {
@@ -334,7 +334,7 @@ input[type=text]:focus {
 }
 
 .inputs > input {
-    border: 3px solid #11a50a;
+    border: 2px solid #000000;
     border-radius: 13px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -344,6 +344,11 @@ input[type=text]:focus {
     margin-left: 23vh;
     margin-bottom: 1vh;
     margin-top: 2vh;
+    color: #000000;
+}
+
+.inputs > input::placeholder {
+    color: rgb(0, 0, 0);
 }
 
 .inputs > h1 {
@@ -356,8 +361,8 @@ input[type=text]:focus {
 }
 
 .tags-input-container {
-    background-color: #ffffff;
-    border: 2px solid #ba5ef3;
+    background-color: #585858;
+    border: 2px solid #ffffff;
     padding: 0.2em;
     border-radius: 15px;
     width: min(80vw, 600px);
@@ -373,6 +378,10 @@ input[type=text]:focus {
 .tags-input-container > input {
     font-size: 2.2vh;
     border-radius: 15px;
+}
+
+.tags-input-container > input::placeholder {
+    color: #000000;
 }
 
 .tag-item {
@@ -429,7 +438,7 @@ input[type=text]:focus {
     content: 'Update Profile Pic';
     display: inline-block;
     /* background: linear-gradient(top, #f9f9f9, #e3e3e3); */
-    border: 2px solid #999;
+    border: 2px solid #000000;
     border-radius: 3px;
     padding: 5px 40px;
     outline: none;
@@ -442,13 +451,14 @@ input[type=text]:focus {
     display: flex;
     width: 30vh;
     margin: auto;
-    color: white;    
+    color: rgb(0, 0, 0);    
   }
   .input-file:hover::before {
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
+    background-color: #000000;
+    color: rgb(255, 255, 255);
     font-weight: 500;
   }
   .input-file:active::before {
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
   }
+
