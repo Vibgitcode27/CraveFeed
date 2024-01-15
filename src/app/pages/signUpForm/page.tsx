@@ -3,10 +3,9 @@ import React, { useState, ChangeEvent, KeyboardEvent, useRef } from "react";
 import { Avatar } from "@mui/material";
 import "./page.css";
 
-export default function SignUp() {
+export default function SignUpForm() {
     const [foodTags, setFoodTags] = useState<string[]>([]);
     const [cuisineTags, setCuisineTags] = useState<string[]>([]);
-    const inputRef = useRef(null)
     const [image, setImage] = useState<string>();
 
   function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -46,7 +45,7 @@ export default function SignUp() {
                     <div className="Upload-button" style={{display : "flex"}}>
                         <Avatar alt="Profile Pic" src={image} style={{position : "relative" , width : "14vh" , height : "14vh" , marginTop : "-2vh" , marginLeft : "30vh" , border: "2px solid black"}}/>
                         <div className="Upload-button-div">
-                            <input type="file" ref={inputRef} onChange={handleImageChange} className="input-file" />
+                            <input type="file" onChange={handleImageChange} className="input-file" />
                         </div>
                     </div>
                 <div className="inputs">
