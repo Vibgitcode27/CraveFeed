@@ -7,12 +7,13 @@ export default function SignUp() {
     const [foodTags, setFoodTags] = useState<string[]>([]);
     const [cuisineTags, setCuisineTags] = useState<string[]>([]);
     const inputRef = useRef(null)
-    const [image , setImage] = useState()
+    const [image, setImage] = useState<string>();
 
-    function handleImageChange (e) {
-        setImage(URL.createObjectURL(e.target.files[0]))
-        // console.log(URL.createObjectURL(e.target.files[0]))
-    }   
+  function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+    if (e.target.files && e.target.files.length > 0) {
+      setImage(URL.createObjectURL(e.target.files[0]));
+    }
+  }  
 
     function handleKeyDownFood(e : KeyboardEvent<HTMLInputElement>) {
         if(e.key !== 'Enter') return;
@@ -42,12 +43,20 @@ export default function SignUp() {
         <div className="main-div">
             <div className="sub-div">
                 <h2>🍽️ Welcome to <span>CRAVEFEED</span>😋</h2>
+                    <div className="Upload-button" style={{display : "flex"}}>
+                        <Avatar alt="Profile Pic" src={image} style={{position : "relative" , width : "14vh" , height : "14vh" , marginTop : "-2vh" , marginLeft : "30vh" , border: "2px solid black"}}/>
+                        <div className="Upload-button-div">
+                            <input type="file" ref={inputRef} onChange={handleImageChange} className="input-file" />
+                        </div>
+                    </div>
                 <div className="inputs">
-                    <h3>Name</h3>
+                    {/* <h3>Name</h3> */}
                     <input type="text" placeholder="Your Name" />
-                    <h3>What will others call you?</h3>
+                    {/* <h3>Bio</h3> */}
+                    <input type="text" placeholder="Bio" />
+                    {/* <h3>Username</h3> */}
                     <input type="text" placeholder="Username" />
-                    <h1> Spill the beans on your cravings, buddy!</h1>
+                    {/* <h1> Spill the beans on your cravings, buddy!</h1> */}
                     <h3>Three foods you crave most </h3>
                     <div className="tags-input-container">
                     {foodTags.map((tag, index) => (
@@ -57,11 +66,6 @@ export default function SignUp() {
                         </div>
                     ))}
                         <input type="text" onKeyDown={handleKeyDownFood} className="tags-input" placeholder="Enter your food"/>                        
-                    </div>
-                    <div className="App">
-                        <h2>Add Image:</h2>
-                        <input type="file" ref={inputRef} onChange={handleImageChange} />
-                        <Avatar alt="Profile Pic" src={image} style={{position : "relative" , width : "20vh" , height : "20vh" , marginTop : "5vh" , marginLeft : "16vh" , border: "2px solid black"}}/>
                     </div>
                     <h3>Three cousines you like</h3>
                     <div className="tags-input-container">

@@ -25,7 +25,8 @@
 }
 
 .inputs > h3 {
-    margin-left: 23vh;
+    margin-left: 24vh;
+    margin-bottom: 1vh;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: larger;
     color: #090909;
@@ -38,9 +39,10 @@
     padding-bottom: 10px;
     padding-left: 5px;
     font-size: 2.2vh;
-    width: 80vh;
+    width: 82vh;
     margin-left: 23vh;
-    margin-bottom: 3vh;
+    margin-bottom: 1vh;
+    margin-top: 2vh;
 }
 
 .inputs > h1 {
@@ -114,3 +116,36 @@
     background-color: #000000; /* Updated background color */
     color: rgb(255, 255, 255)
 }
+
+.input-file::-webkit-file-upload-button{
+    visibility: hidden;
+}
+
+.input-file::before {
+    content: 'Upload Profile Pic';
+    display: inline-block;
+    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 40px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 10px;
+    display: flex;
+    width: 30vh;
+    margin: auto;
+    
+  }
+  .input-file:hover::before {
+    background-color: #000000;
+    color: white;
+    font-weight: 300;
+  }
+  .input-file:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+  }
