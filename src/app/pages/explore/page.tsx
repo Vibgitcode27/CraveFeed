@@ -75,7 +75,6 @@ export default function Explore() {
     })
 
     const postDataArray = useAppSelector((state) => state.postData.postData)
-    console.log(postDataArray)
 
     const imageArray = [
         {
@@ -99,7 +98,9 @@ export default function Explore() {
     ]
     
     const [like, setLike] = useState(
-        postDataArray.map((post) => ({ id: post.id , like: "UNLIKE" }))
+        // postDataArray.map((post) => ({ id: post.id , like: "UNLIKE" }))
+        imageArray.map((post) => ({ id: post.id , like: "UNLIKE" }))
+
     );
 
     function handleLike(postId : any) {
@@ -138,11 +139,17 @@ export default function Explore() {
                     <h1>Your Cravings</h1>
                     <div className="content">
                         {/* This is post content div */}
-                        {postDataArray.map((value, index) => (
+                        {/* {postDataArray.map((value, index) => ( */}
+                        {imageArray.map((value, index) => (
                             <div className="content-post" key={index}>
                                 <div className = "post-div1" style={{display : "flex"}}>
                                     <Avatar alt="Remy Sharp" src={imgp7} style={{position : "relative" , width : "7vh" , height : "7vh" , marginTop : "1vh" , marginBottom : "1vh" , marginLeft : "2vh"}}/>
-                                    <h2>{value.Usera.name}</h2>
+                                    <div>
+                                    {/* <h2>{value.Usera.name}</h2> */}
+                                        <h2>{value.h2}</h2>
+                                        <h3>@username</h3>
+                                    </div>
+                                    <button>User Info</button>
                                 </div>
                                 <img src={imgpP} alt="" />
                                 <div className="reactions">
@@ -153,6 +160,11 @@ export default function Explore() {
                                     }
                                     <ChatBubbleIcon style={{marginLeft : "3vh"}}/>
                                     <SendIcon style={{marginLeft : "3vh"}}/>
+                                </div>
+                                <div className="about-post">
+                                    <div>
+                                        <h3>This is caption of the post the delicious cousine.</h3>
+                                    </div>
                                 </div>
                             </div>
                         ))}
