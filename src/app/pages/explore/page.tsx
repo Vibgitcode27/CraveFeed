@@ -16,6 +16,8 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import SendIcon from '@mui/icons-material/Send';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import {Accordion , AccordionDetails , AccordionSummary , Typography} from "@mui/material";
 import { Modal , Box} from "@mui/material";
 import { trpc } from "@/app/_trpc/client";
 import { useAppDispatch, useAppSelector } from "@/app/globalRedux/hooks";
@@ -35,6 +37,7 @@ export default function Explore() {
     const dispatch = useAppDispatch()
 
     const postData = trpc.getPosts.useQuery({userId : 1})
+
 
     function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (e.target.files && e.target.files.length > 0) {
@@ -81,22 +84,58 @@ export default function Explore() {
             id : 1,
             h2 : "Big Bundah Girl",
             img1 : imgp7,
-            img2 : imgpP
+            img2 : imgpP,
+            Comments : [{
+                username : "Vibhor Phalke" ,
+                location : "Guna/MP"
+            },
+            {
+                username : "Sachin Sahay" ,
+                location : "Banaras/UP"
+            },
+            {
+                username : "MyLove@69" ,
+                location : "Khilchpur/MP"
+            }]
         },
         {
             id : 2,
             h2 : "Big Bundah Girl",
             img1 : imgp7,
-            img2 : p2r
+            img2 : p2r,
+            Comments : [{
+                username : "Dada Saheb Phalke" ,
+                location : "Guna/MP"
+            }]
         },
         {
             id : 3,
             h2 : "Big Bundah Girl",
             img1 : imgp7,
-            img2 : p3r
+            img2 : p3r,
+            Comments : [{
+                username : "Dada Saheb Phalke" ,
+                location : "Guna/MP"
+            },
+            {
+                username : "Sachin Sahay" ,
+                location : "Banaras/UP"
+            },
+            ]
         },
+
     ]
     
+    // HANDLE VIEW COMMENTS BUTTON
+
+    const [expanded, setExpanded] = React.useState(false);
+
+    const handleExpansion = () => {
+        setExpanded((prevExpanded) => !prevExpanded);
+    };
+
+    // HANDLE LIKES 
+
     const [like, setLike] = useState(
         // postDataArray.map((post) => ({ id: post.id , like: "UNLIKE" }))
         imageArray.map((post) => ({ id: post.id , like: "UNLIKE" }))
@@ -147,7 +186,7 @@ export default function Explore() {
                                     <div>
                                     {/* <h2>{value.Usera.name}</h2> */}
                                         <h2>{value.h2}</h2>
-                                        <h3>@username</h3>
+                                        <h3><LocationOnIcon style={{color : "gray" , height : "17px" , marginTop : "-0.4vh" , marginRight : "-0.4vh"}}/>Indore/MP</h3>
                                     </div>
                                     <button>User Info</button>
                                 </div>
@@ -163,8 +202,43 @@ export default function Explore() {
                                 </div>
                                 <div className="about-post">
                                     <div>
-                                        <h3>This is caption of the post the delicious cousine.</h3>
+                                        <h3>This is caption of the post the delicious cousine lorem30.</h3>
                                     </div>
+                                </div>
+                                <div className="content-comments">
+                                <Accordion
+                                    expanded={expanded}
+                                    onChange={handleExpansion}
+                                    // slots={{ transition: Fade }}
+                                    // slotProps={{ transition: { timeout: 400 } }}
+                                    // sx={{
+                                    //     '& .MuiAccordion-region': { height: expanded ? 'auto' : 0 },
+                                    //     '& .MuiAccordionDetails-root': { display: expanded ? 'block' : 'none' },
+                                    //     }}
+                                    style={{boxShadow : "none" ,borderRadius : "20px" , marginTop : "-0.5vh"}}
+                                >
+                                        <AccordionSummary
+                                        aria-controls="panel1-content"
+                                        id="panel1-header"
+                                        >
+                                        <Typography style={{fontSize : "14px"}}>View Comments</Typography>
+                                        </AccordionSummary>
+                                        {/* {value.Comments.map((value, index) => ( */}
+                                        <AccordionDetails>
+                                        <div>
+                                            <div style={{display : "flex"}} className="comment-load-div">
+                                                <Avatar alt="Remy Sharp" src={imgp7} style={{position : "relative" , width : "6vh" , height : "6vh" , marginBottom : "1vh"}}/>
+                                                <div className="comment-name-username">
+                                                    {/* <h2>{value.Usera.name}</h2> */}
+                                                    <h2>{value.h2}</h2>
+                                                </div>
+                                            </div>
+                                            <div className="comment-pTag">
+                                                <p>This dish looks so good. Period!!!</p>
+                                            </div>
+                                        </div>
+                                        </AccordionDetails>
+                                    </Accordion>
                                 </div>
                             </div>
                         ))}
@@ -223,7 +297,7 @@ export default function Explore() {
                             <span className="close" onClick={() => removeTagFood(index)}>&times;</span>
                         </div>
                     ))}
-                        <input type="text" onKeyDown={handleKeyDownFood} className="tags-input" placeholder="Enter your food"/>                        
+                        <input type="text" onKeyDown={handleKeyDownFood} style={{paddingLeft : "1vh"}} className="tags-input" placeholder="Enter your food"/>                        
                     </div>
                     <h3>Three cousines you like</h3>
                     <div className="tags-input-container">
@@ -233,7 +307,7 @@ export default function Explore() {
                             <span className="close" onClick={() => removeTagCuisine(index)}>&times;</span>
                         </div>
                     ))}
-                        <input type="text" onKeyDown={handleKeyDownCuisine} className="tags-input" placeholder="Enter your food"/>                        
+                        <input type="text" onKeyDown={handleKeyDownCuisine} style={{paddingLeft : "1vh"}} className="tags-input" placeholder="Enter the cousine"/>                        
                     </div>
                 </div>
                 <div>
