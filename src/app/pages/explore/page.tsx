@@ -128,11 +128,14 @@ export default function Explore() {
     
     // HANDLE VIEW COMMENTS BUTTON
 
-    const [expanded, setExpanded] = React.useState(false);
+    const [expandedArray, setExpandedArray] = React.useState(new Array(imageArray.length).fill(false));
 
-    const handleExpansion = () => {
-        setExpanded((prevExpanded) => !prevExpanded);
-    };
+  const handleExpansion = (index: number) => {
+    // Toggle the expansion state of the clicked Accordion and close others
+    setExpandedArray((prevExpandedArray) =>
+      prevExpandedArray.map((_, i) => (i === index ? !prevExpandedArray[i] : false))
+    );
+  };
 
     // HANDLE LIKES 
 
@@ -182,7 +185,7 @@ export default function Explore() {
                         {imageArray.map((value, index) => (
                             <div className="content-post" key={index}>
                                 <div className = "post-div1" style={{display : "flex"}}>
-                                    <Avatar alt="Remy Sharp" src={imgp7} style={{position : "relative" , width : "7vh" , height : "7vh" , marginTop : "1vh" , marginBottom : "1vh" , marginLeft : "2vh"}}/>
+                                    <Avatar alt="Remy Sharp" src={imgp7} style={{border : "2px solid black" , position : "relative" , width : "7vh" , height : "7vh" , marginTop : "1vh" , marginBottom : "1vh" , marginLeft : "2vh"}}/>
                                     <div>
                                     {/* <h2>{value.Usera.name}</h2> */}
                                         <h2>{value.h2}</h2>
@@ -206,7 +209,7 @@ export default function Explore() {
                                     </div>
                                 </div>
                                 <div className="content-comments">
-                                <Accordion
+                                {/* <Accordion
                                     expanded={expanded}
                                     onChange={handleExpansion}
                                     // slots={{ transition: Fade }}
@@ -216,28 +219,32 @@ export default function Explore() {
                                     //     '& .MuiAccordionDetails-root': { display: expanded ? 'block' : 'none' },
                                     //     }}
                                     style={{boxShadow : "none" ,borderRadius : "20px" , marginTop : "-0.5vh"}}
-                                >
+                                > */}
+                                    <Accordion
+                                    expanded={expandedArray[index]} // Use the individual expanded state
+                                    onChange={() => handleExpansion(index)} // Pass the index to handleExpansion
+                                    style={{ boxShadow: "none", borderRadius: "20px", marginTop: "-0.5vh" }}
+                                    >
                                         <AccordionSummary
                                         aria-controls="panel1-content"
-                                        id="panel1-header"
-                                        >
+                                        id="panel1-header" >
                                         <Typography style={{fontSize : "14px"}}>View Comments</Typography>
                                         </AccordionSummary>
-                                        {/* {value.Comments.map((value, index) => ( */}
                                         <AccordionDetails>
-                                        <div>
-                                            <div style={{display : "flex"}} className="comment-load-div">
-                                                <Avatar alt="Remy Sharp" src={imgp7} style={{position : "relative" , width : "6vh" , height : "6vh" , marginBottom : "1vh"}}/>
-                                                <div className="comment-name-username">
-                                                    {/* <h2>{value.Usera.name}</h2> */}
-                                                    <h2>{value.h2}</h2>
+                                            {value.Comments.map((comment, commentIndex) => (
+                                                <div key={commentIndex} className="comment-load-main-div">
+                                                    <div style={{ display: "flex" }} className="comment-load-div">
+                                                        <Avatar alt="Remy Sharp" src={imgp7} style={{ position: "relative",border: "1px solid black" , width: "6vh", height: "6vh", marginBottom: "1vh" }} />
+                                                        <div className="comment-name-username">
+                                                            <h2>{comment.username}</h2>
+                                                        </div>
+                                                    </div>
+                                                    <div className="comment-pTag">
+                                                        <p>This dish looks so good. Period!!!</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="comment-pTag">
-                                                <p>This dish looks so good. Period!!!</p>
-                                            </div>
-                                        </div>
-                                        </AccordionDetails>
+                                            ))}
+                                    </AccordionDetails>
                                     </Accordion>
                                 </div>
                             </div>

@@ -318,6 +318,11 @@ input[type=text]:focus {
 }
 
 /* All about comments */
+
+.comment-load-main-div{
+    margin-bottom: 2vh;
+}
+
 .comment-name-username {
     margin-left: 1vh;
 }
