@@ -59,7 +59,29 @@ export const appRouter = router({
             })
             return postData
         }),
-        
+    // editPost : publicProcedure 
+    //     .input(z.object({
+    //         name : z.string(),
+    //         bio : z.string(),
+    //         username : z.string(),
+    //         foods : z.array(z.object({
+    //             id : z.string() ,
+    //             dish : z.string()
+    //         })),
+    //         cousine : z.object({
+    //             id : z.string(),
+    //             cousine : z.string()
+    //         })
+    //     }))
+    //     .mutation(async (opts) => {
+    //         const postData = await opts.input
+    //         const updateProfile = await opts.ctx.prisma.Usera.update({
+
+    //         })
+    //     }),  
+    // You will have to update or make few more tables for this logic 
+    // Usera should have more attributes ....
+    // take a look at zod input types ....
     signInCheck: publicProcedure
         .input(z.object({
             username: z.string(),
@@ -259,13 +281,14 @@ export const appRouter = router({
                     },
                 },
                 include: {
+                    Usera : true,
                     Likes: true,
                     Comments: true,
                 },
                 take: 10, //No of posts to take change accordingly
             });
             return userPosts;
-        }),
+        }),          
     addCommentToPost: publicProcedure
         .input(z.object({
             userId: z.number(),

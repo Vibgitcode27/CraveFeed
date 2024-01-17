@@ -1,5 +1,5 @@
 .follower-main-div{
-    margin: 2vh 10vh;
+    margin: 2vh 15vh;
     height: 61vh;
     overflow-y: scroll;
     -ms-overflow-style: none;
@@ -26,6 +26,10 @@
     margin-left: 40vh;
     height: 6vh;
     width: 25vh;
+}
+
+.follower-profile {
+    width: 50vh;
 }
 
 .follower-profile > h1 {

@@ -1,6 +1,7 @@
 "use client"
 
 import React , {KeyboardEvent} from "react";
+import { useEffect } from "react";
 import "./page.css";
 import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
@@ -16,7 +17,9 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import SendIcon from '@mui/icons-material/Send';
 import { Modal , Box} from "@mui/material";
-
+import { trpc } from "@/app/_trpc/client";
+import { useAppDispatch, useAppSelector } from "@/app/globalRedux/hooks";
+import { userPostData } from "@/app/globalRedux/features/users/postPageUser";
 
 export default function Explore() {
     const imgp4 = img4.src
@@ -28,6 +31,11 @@ export default function Explore() {
     const [open, setOpen] = useState(false);
     const [foodTags, setFoodTags] = useState<string[]>([]);
     const [cuisineTags, setCuisineTags] = useState<string[]>([]);
+
+    const dispatch = useAppDispatch()
+
+    const postData = trpc.getPosts.useQuery({userId : 1})
+
     function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (e.target.files && e.target.files.length > 0) {
           setImage(URL.createObjectURL(e.target.files[0]));
@@ -58,7 +66,17 @@ export default function Explore() {
         setCuisineTags(cuisineTags.filter((e1 , i) => i !== index))
     }
 
-    
+
+    useEffect(() => {
+        if(postData.data)
+        {
+            dispatch(userPostData(postData.data))
+        }
+    })
+
+    const postDataArray = useAppSelector((state) => state.postData.postData)
+    console.log(postDataArray)
+
     const imageArray = [
         {
             id : 1,
@@ -81,7 +99,7 @@ export default function Explore() {
     ]
     
     const [like, setLike] = useState(
-        imageArray.map((post) => ({ id: post.id, like: "UNLIKE" }))
+        postDataArray.map((post) => ({ id: post.id , like: "UNLIKE" }))
     );
 
     function handleLike(postId : any) {
@@ -120,13 +138,13 @@ export default function Explore() {
                     <h1>Your Cravings</h1>
                     <div className="content">
                         {/* This is post content div */}
-                        {imageArray.map((value, index) => (
+                        {postDataArray.map((value, index) => (
                             <div className="content-post" key={index}>
                                 <div className = "post-div1" style={{display : "flex"}}>
-                                    <Avatar alt="Remy Sharp" src={value.img1} style={{position : "relative" , width : "7vh" , height : "7vh" , marginTop : "1vh" , marginBottom : "1vh" , marginLeft : "2vh"}}/>
-                                    <h2>{value.h2}</h2>
+                                    <Avatar alt="Remy Sharp" src={imgp7} style={{position : "relative" , width : "7vh" , height : "7vh" , marginTop : "1vh" , marginBottom : "1vh" , marginLeft : "2vh"}}/>
+                                    <h2>{value.Usera.name}</h2>
                                 </div>
-                                <img src={value.img2} alt="" />
+                                <img src={imgpP} alt="" />
                                 <div className="reactions">
                                     { value.id === like[index].id && like[index].like === `LIKE`?
                                         ( <FavoriteIcon style={{color : "crimson"}} onClick={() => handleUnLike(value.id)}/>) : (

@@ -157,6 +157,43 @@ export const followersDataSlice = createSlice({
     }
 })
 
+interface postDataType {
+        id : number ,
+        restaurant : string ,
+        dish : string ,
+        city : string ,
+        caption : string | null ,
+        image : string | null ,
+        location : string | null ,
+        Usera : {
+            id : number ,
+            email : string ,
+            username : string,
+            name : string,
+            password : string
+        }
+}
+
+interface PostState {
+    postData : postDataType[]
+}
+
+const initialPostData : PostState = {
+    postData : []
+};
+
+export const postDataSlice = createSlice({
+    name : "postData" ,
+    initialState : initialPostData ,
+    reducers : {
+        userPostData(state , action){
+            state.postData = action.payload
+        }  
+    }
+})
+
+
+export const { userPostData } = postDataSlice.actions;
 export const { followersUser } = followerSlice.actions;
 export const { followingUsers } = followingSlice.actions;
 export const { userPosts } = postSlice.actions;
@@ -164,6 +201,7 @@ export const { userFollowingData } = followingDataSlice.actions;
 export const { userFollowersData } = followersDataSlice.actions;
 
 export default {
+    postData : postDataSlice.reducer,
     follower : followerSlice.reducer ,
     following : followingSlice.reducer ,
     posts : postSlice.reducer,
