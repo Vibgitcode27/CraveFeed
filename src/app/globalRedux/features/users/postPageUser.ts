@@ -157,6 +157,18 @@ export const followersDataSlice = createSlice({
     }
 })
 
+interface Comment{
+        id : number ,
+        text : string,
+        Usera : {
+            id : number ,
+            email : string ,
+            username : string,
+            name : string,
+            password : string
+        },
+}
+
 interface postDataType {
         id : number ,
         restaurant : string ,
@@ -171,7 +183,8 @@ interface postDataType {
             username : string,
             name : string,
             password : string
-        }
+        },
+        Comments : Comment[]
 }
 
 interface PostState {

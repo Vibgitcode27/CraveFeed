@@ -283,7 +283,11 @@ export const appRouter = router({
                 include: {
                     Usera : true,
                     Likes: true,
-                    Comments: true,
+                    Comments: {
+                        include : {
+                            Usera : true
+                        }
+                    },
                 },
                 take: 10, //No of posts to take change accordingly
             });

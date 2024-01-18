@@ -37,7 +37,7 @@ export default function Explore() {
     const dispatch = useAppDispatch()
 
     const postData = trpc.getPosts.useQuery({userId : 1})
-
+    console.log(postData.data)
 
     function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (e.target.files && e.target.files.length > 0) {
@@ -78,7 +78,7 @@ export default function Explore() {
     })
 
     const postDataArray = useAppSelector((state) => state.postData.postData)
-
+    console.log(postDataArray)
     const imageArray = [
         {
             id : 1,
@@ -181,15 +181,15 @@ export default function Explore() {
                     <h1>Your Cravings</h1>
                     <div className="content">
                         {/* This is post content div */}
-                        {/* {postDataArray.map((value, index) => ( */}
-                        {imageArray.map((value, index) => (
+                        {postDataArray && postDataArray.map((value, index) => (
+                        // {imageArray.map((value, index) => (
                             <div className="content-post" key={index}>
                                 <div className = "post-div1" style={{display : "flex"}}>
                                     <Avatar alt="Remy Sharp" src={imgp7} style={{border : "2px solid black" , position : "relative" , width : "7vh" , height : "7vh" , marginTop : "1vh" , marginBottom : "1vh" , marginLeft : "2vh"}}/>
                                     <div>
                                     {/* <h2>{value.Usera.name}</h2> */}
-                                        <h2>{value.h2}</h2>
-                                        <h3><LocationOnIcon style={{color : "gray" , height : "17px" , marginTop : "-0.4vh" , marginRight : "-0.4vh"}}/>Indore/MP</h3>
+                                        <h2>{value.Usera.name}</h2>
+                                        <h3><LocationOnIcon style={{color : "gray" , height : "17px" , marginTop : "-0.4vh" , marginRight : "-0.4vh"}}/>{value.city}</h3>
                                     </div>
                                     <button>User Info</button>
                                 </div>
@@ -205,7 +205,7 @@ export default function Explore() {
                                 </div>
                                 <div className="about-post">
                                     <div>
-                                        <h3>This is caption of the post the delicious cousine lorem30.</h3>
+                                        <h3>{value.caption}</h3>
                                     </div>
                                 </div>
                                 <div className="content-comments">
@@ -231,19 +231,21 @@ export default function Explore() {
                                         <Typography style={{fontSize : "14px"}}>View Comments</Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
-                                            {value.Comments.map((comment, commentIndex) => (
+                                        {value.Comments && Array.isArray(value.Comments) && value.Comments.length > 0 && (
+                                            value.Comments.map((comment, commentIndex) => (
                                                 <div key={commentIndex} className="comment-load-main-div">
                                                     <div style={{ display: "flex" }} className="comment-load-div">
                                                         <Avatar alt="Remy Sharp" src={imgp7} style={{ position: "relative",border: "1px solid black" , width: "6vh", height: "6vh", marginBottom: "1vh" }} />
                                                         <div className="comment-name-username">
-                                                            <h2>{comment.username}</h2>
+                                                            <h2>{comment.Usera.name}</h2>
                                                         </div>
                                                     </div>
                                                     <div className="comment-pTag">
-                                                        <p>This dish looks so good. Period!!!</p>
+                                                        <p>{comment.text}</p>
                                                     </div>
                                                 </div>
-                                            ))}
+                                            ))
+                                            )}
                                     </AccordionDetails>
                                     </Accordion>
                                 </div>
