@@ -116,19 +116,21 @@ export const appRouter = router({
         .input(z.object({
             username : z.string() ,
             email: z.string() ,
-            password : z.string()
+            password : z.string(),
+            name : z.string()
         }))
         .mutation(async (opts) =>
         {
             let username = opts.input.username;
             let password = opts.input.password;
             let email = opts.input.email;
-
+            let name = opts.input.name
             const newUser = await opts.ctx.prisma.Usera.create({
                 data : {
                     email ,
                     username ,
                     password ,
+                    name,
                 }
             })
             return { id: newUser.id };

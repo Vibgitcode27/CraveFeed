@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import "./page.css";
 import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
-import img4 from "../../_assets/image6.png"
 import imgP from "../../_assets/post1.webp"
 import img6 from "../../_assets/image4.jpg"
 import p2 from "../../_assets/post2.webp"
@@ -24,11 +23,8 @@ import { useAppDispatch, useAppSelector } from "@/app/globalRedux/hooks";
 import { userPostData } from "@/app/globalRedux/features/users/postPageUser";
 
 export default function Explore() {
-    const imgp4 = img4.src
     const imgp7 = img6.src
     const imgpP = imgP.src
-    const p2r = p2.src
-    const p3r = p3.src
     const [image, setImage] = useState<string>();
     const [open, setOpen] = useState(false);
     const [foodTags, setFoodTags] = useState<string[]>([]);
@@ -79,56 +75,10 @@ export default function Explore() {
 
     const postDataArray = useAppSelector((state) => state.postData.postData)
     console.log(postDataArray)
-    const imageArray = [
-        {
-            id : 1,
-            h2 : "Big Bundah Girl",
-            img1 : imgp7,
-            img2 : imgpP,
-            Comments : [{
-                username : "Vibhor Phalke" ,
-                location : "Guna/MP"
-            },
-            {
-                username : "Sachin Sahay" ,
-                location : "Banaras/UP"
-            },
-            {
-                username : "MyLove@69" ,
-                location : "Khilchpur/MP"
-            }]
-        },
-        {
-            id : 2,
-            h2 : "Big Bundah Girl",
-            img1 : imgp7,
-            img2 : p2r,
-            Comments : [{
-                username : "Dada Saheb Phalke" ,
-                location : "Guna/MP"
-            }]
-        },
-        {
-            id : 3,
-            h2 : "Big Bundah Girl",
-            img1 : imgp7,
-            img2 : p3r,
-            Comments : [{
-                username : "Dada Saheb Phalke" ,
-                location : "Guna/MP"
-            },
-            {
-                username : "Sachin Sahay" ,
-                location : "Banaras/UP"
-            },
-            ]
-        },
-
-    ]
     
     // HANDLE VIEW COMMENTS BUTTON
 
-    const [expandedArray, setExpandedArray] = React.useState(new Array(imageArray.length).fill(false));
+    const [expandedArray, setExpandedArray] = React.useState(new Array(postDataArray.length).fill(false));
 
   const handleExpansion = (index: number) => {
     // Toggle the expansion state of the clicked Accordion and close others
@@ -141,25 +91,25 @@ export default function Explore() {
 
     const [like, setLike] = useState(
         // postDataArray.map((post) => ({ id: post.id , like: "UNLIKE" }))
-        imageArray.map((post) => ({ id: post.id , like: "UNLIKE" }))
+        postDataArray.map((post) => ({ id: post.id , like: "UNLIKE" }))
 
     );
 
-    function handleLike(postId : any) {
+    function handleLike(postId: any) {
         setLike((prevLikes) =>
-            prevLikes.map((prevLike) =>
-                prevLike.id === postId ? { ...prevLike, like: "LIKE" } : prevLike
-            )
+          prevLikes.map((prevLike) =>
+            prevLike.id === postId ? { ...prevLike, like: "LIKE" } : prevLike
+          )
         );
-    }
-
-    function handleUnLike(postId : any) {
+      }
+      
+      function handleUnLike(postId: any) {
         setLike((prevLikes) =>
-            prevLikes.map((prevLike) =>
-                prevLike.id === postId ? { ...prevLike, like: "UNLIKE" } : prevLike
-            )
+          prevLikes.map((prevLike) =>
+            prevLike.id === postId ? { ...prevLike, like: "UNLIKE" } : prevLike
+          )
         );
-    }
+      }
 
     return (
     <div className="mainDiv">
@@ -195,11 +145,22 @@ export default function Explore() {
                                 </div>
                                 <img src={imgpP} alt="" />
                                 <div className="reactions">
-                                    { value.id === like[index].id && like[index].like === `LIKE`?
-                                        ( <FavoriteIcon style={{color : "crimson"}} onClick={() => handleUnLike(value.id)}/>) : (
-                                            <FavoriteBorderIcon onClick={() => handleLike(value.id)}/>
-                                        )
-                                    }
+                                    {/* {like.find((prevLike) => prevLike.id === value.id)?.like === "LIKE" ? (
+                                        <FavoriteIcon style={{ color: "crimson" }} onClick={() => handleUnLike(value.id)} />
+                                        ) : (
+                                        <FavoriteBorderIcon onClick={() => handleLike(value.id)} />
+                                    )} */}
+                                    {value.Likes.length > 0 ? (value.Likes.map((like, index) => (
+                                    <React.Fragment key={index}>
+                                        {like.postId && like.postId === value.id ? (
+                                            <FavoriteIcon style={{ color: "crimson" }} />
+                                        ) : (
+                                            <FavoriteBorderIcon />
+                                        )}
+                                    </React.Fragment>
+                                ))) : (
+                                    <FavoriteBorderIcon />
+                                )}
                                     <ChatBubbleIcon style={{marginLeft : "3vh"}}/>
                                     <SendIcon style={{marginLeft : "3vh"}}/>
                                 </div>
