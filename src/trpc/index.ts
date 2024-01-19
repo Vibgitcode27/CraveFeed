@@ -328,38 +328,46 @@ export const appRouter = router({
         }))
         .mutation(async (opts) => {
             const { userId, postId } = opts.input;
-            const user = await opts.ctx.prisma.Usera.findUnique({ //Can be removed
-                where: { id: userId },
-            });
-            const post = await opts.ctx.prisma.Post.findUnique({ //Can be removed
-                where: { id: postId },
-            });
-            if (!user || !post) {                                //Can be removed
-                throw new Error("User or post not found");
-            }
-            const existingLike = await opts.ctx.prisma.Like.findFirst({ //
+
+            const existingLike = await opts.ctx.prisma.Like.findFirst({
                 where: {
                     userId,
                     postId,
                 },
             });
             if (existingLike) {
-                throw new Error("User has already liked the post");
-            }
-            await opts.ctx.prisma.Like.create({  // Liked a new post
-                data: {
-                    userId,
-                    postId,
-                },
-            });
-            await opts.ctx.prisma.Post.update({  //Updating the no of
-                where: { id: postId },
-                data: {
-                    likeCount: {
-                        increment: 1,
+                await opts.ctx.prisma.Like.delete({
+                    where: {
+                        id: existingLike.id,
                     },
-                },
-            });
+                });
+                await opts.ctx.prisma.Post.update({
+                    where: { id: postId },
+                    data: {
+                        likeCount: {
+                            decrement: 1,
+                        },
+                    },
+                });
+                return { message: 'Successfully removed like' };
+            } else {
+                await opts.ctx.prisma.Like.create({
+                    data: {
+                        userId,
+                        postId,
+                    },
+                });
+                await opts.ctx.prisma.Post.update({
+                    where: { id: postId },
+                    data: {
+                        likeCount: {
+                            increment: 1,
+                        },
+                    },
+                });
+
+                return { message: 'Successfully added like' };
+            }
         }),
     getLikedPosts: publicProcedure
         .input(z.object({
