@@ -328,13 +328,13 @@ export const appRouter = router({
         }))
         .mutation(async (opts) => {
             const { userId, postId } = opts.input;
-            const user = await opts.ctx.prisma.Usera.findUnique({  //Can be removed
+            const user = await opts.ctx.prisma.Usera.findUnique({ //Can be removed
                 where: { id: userId },
             });
             const post = await opts.ctx.prisma.Post.findUnique({ //Can be removed
                 where: { id: postId },
             });
-            if (!user || !post) {                                        //Can be removed
+            if (!user || !post) {                                //Can be removed
                 throw new Error("User or post not found");
             }
             const existingLike = await opts.ctx.prisma.Like.findFirst({ //

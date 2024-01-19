@@ -29,7 +29,6 @@ export default function Explore() {
     const [open, setOpen] = useState(false);
     const [foodTags, setFoodTags] = useState<string[]>([]);
     const [cuisineTags, setCuisineTags] = useState<string[]>([]);
-
     const dispatch = useAppDispatch()
 
     const postData = trpc.getPosts.useQuery({userId : 1})
@@ -110,6 +109,19 @@ export default function Explore() {
           )
         );
       }
+      
+      const mutation = trpc.likePost.useMutation()
+
+      const handleLikePost = async (postId: number) => {
+        try {
+            const result = await mutation.mutate({ userId: 1, postId });
+            // Handle the result if needed
+            console.log(result);
+        } catch (error) {
+            // Handle errors
+            console.error(error);
+        }
+    };
 
     return (
     <div className="mainDiv">
@@ -153,13 +165,13 @@ export default function Explore() {
                                     {value.Likes.length > 0 ? (value.Likes.map((like, index) => (
                                     <React.Fragment key={index}>
                                         {like.postId && like.postId === value.id ? (
-                                            <FavoriteIcon style={{ color: "crimson" }} />
+                                            <FavoriteIcon style={{ color: "crimson" }} onClick={() => handleLikePost(value.id)} />
                                         ) : (
-                                            <FavoriteBorderIcon />
+                                            <FavoriteBorderIcon/>
                                         )}
                                     </React.Fragment>
                                 ))) : (
-                                    <FavoriteBorderIcon />
+                                    <FavoriteBorderIcon onClick={() => handleLikePost(value.id)} />
                                 )}
                                     <ChatBubbleIcon style={{marginLeft : "3vh"}}/>
                                     <SendIcon style={{marginLeft : "3vh"}}/>
