@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "./features/counters/counterSlice"
 import currentUserReducer from "./features/users/loginUser";
-import { followerSlice , followingSlice ,postSlice, followingDataSlice ,followersDataSlice , postDataSlice , loggedInUserSlice} from "./features/users/postPageUser";
+import { followerSlice , followingSlice ,postSlice, followingDataSlice ,followersDataSlice , postDataSlice , loggedInUserSlice , userInfoSlice} from "./features/users/postPageUser";
 
 export const makeStore = () => {
     return configureStore({
@@ -14,7 +14,8 @@ export const makeStore = () => {
             followingData : followingDataSlice.reducer,
             followersData : followersDataSlice.reducer,
             postData : postDataSlice.reducer,
-            loggedUser : loggedInUserSlice.reducer
+            loggedUser : loggedInUserSlice.reducer,
+            userInfo : userInfoSlice.reducer
         }
     })
 }

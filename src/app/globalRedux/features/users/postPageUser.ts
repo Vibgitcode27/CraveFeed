@@ -1,4 +1,5 @@
 import { createSlice , PayloadAction } from "@reduxjs/toolkit";
+import { userInfo } from "os";
 
 interface loggedInUser {
     userId : number | null
@@ -230,6 +231,23 @@ export const postDataSlice = createSlice({
     }
 })
 
+interface UserInfo {
+    viewUserId : number
+}
+
+const initialStateUserInfo : UserInfo = {
+    viewUserId : 0
+}
+
+export const userInfoSlice = createSlice({
+    name : "userInfo" ,
+    initialState : initialStateUserInfo,
+    reducers : {
+        pushUserId(state , action) {
+            state.viewUserId = action.payload
+        }
+    }
+})
 
 export const { userPostData } = postDataSlice.actions;
 export const { followersUser } = followerSlice.actions;
@@ -238,6 +256,7 @@ export const { userPosts } = postSlice.actions;
 export const { userFollowingData } = followingDataSlice.actions;
 export const { userFollowersData } = followersDataSlice.actions;
 export const { loggedUser } = loggedInUserSlice.actions;
+export const { pushUserId } = userInfoSlice.actions;
 
 export default {
     postData : postDataSlice.reducer,
@@ -246,5 +265,6 @@ export default {
     posts : postSlice.reducer,
     followingData : followingDataSlice.reducer,
     followersData : followersDataSlice.reducer,
-    loggedUser : loggedInUserSlice.reducer
+    loggedUser : loggedInUserSlice.reducer,
+    userInfo : userInfoSlice.reducer
 }

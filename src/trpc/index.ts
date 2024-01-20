@@ -18,7 +18,11 @@ export const appRouter = router({
         }))
         .query(async(opts) => {
             let userdata = opts.ctx.prisma.Usera.findUnique({
-                where : { id : opts.input.id} ,
+                where : { id : opts.input.id},
+                include : {
+                    Followers : true ,
+                    Following : true
+                }
             })
 
             return userdata;

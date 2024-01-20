@@ -7,8 +7,6 @@ import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
 import imgP from "../../_assets/post1.webp"
 import img6 from "../../_assets/image4.jpg"
-import p2 from "../../_assets/post2.webp"
-import p3 from "../../_assets/post3.webp"
 import SearchIcon from '@mui/icons-material/Search';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -20,7 +18,7 @@ import {Accordion , AccordionDetails , AccordionSummary , Typography} from "@mui
 import { Modal , Box} from "@mui/material";
 import { trpc } from "@/app/_trpc/client";
 import { useAppDispatch, useAppSelector } from "@/app/globalRedux/hooks";
-import { userPostData } from "@/app/globalRedux/features/users/postPageUser";
+import { userPostData , pushUserId} from "@/app/globalRedux/features/users/postPageUser";
 
 export default function Explore() {
     const imgp7 = img6.src
@@ -31,9 +29,15 @@ export default function Explore() {
     const [cuisineTags, setCuisineTags] = useState<string[]>([]);
     const dispatch = useAppDispatch()
 
+    let userDataByFil;
+    
+    const okID = useAppSelector((state) => state.userInfo.viewUserId)
+    userDataByFil = trpc.getUserById.useQuery(okID)
+    console.log(userDataByFil.data)
+    
+    const UserInfoData = userDataByFil.data;
     const postData = trpc.getPosts.useQuery({userId : 1})
-    console.log(postData.data)
-
+    
     function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
         if (e.target.files && e.target.files.length > 0) {
           setImage(URL.createObjectURL(e.target.files[0]));
@@ -115,7 +119,9 @@ export default function Explore() {
       const handleLikePost = async (postId: number) => {
         try {
             const result = await mutation.mutate({ userId: 1, postId });
-            // Handle the result if needed
+            setTimeout(() => {
+                window.location.reload();
+            },10)
             console.log(result);
         } catch (error) {
             // Handle errors
@@ -153,7 +159,10 @@ export default function Explore() {
                                         <h2>{value.Usera.name}</h2>
                                         <h3><LocationOnIcon style={{color : "gray" , height : "17px" , marginTop : "-0.4vh" , marginRight : "-0.4vh"}}/>{value.city}</h3>
                                     </div>
-                                    <button>User Info</button>
+                                    <button onClick={() => {
+                                        const id = value.Usera.id;
+                                        dispatch(pushUserId({id}));
+                                    }}>User Info</button>
                                 </div>
                                 <img src={imgpP} alt="" />
                                 <div className="reactions">
@@ -228,20 +237,19 @@ export default function Explore() {
                 </div>
                 <div className="creator">
                     <Avatar alt="Remy Sharp" src={imgp7} style={{position : "relative" , width : "30vh" , height : "30vh" , marginTop : "2vh", justifyContent : "center", marginLeft : "8vh" , border : "2px solid black"}}/>
-                    <h2>Big bundah Girl</h2>
+                    <h2>{UserInfoData?.name}</h2>
                     <div style={{display : "flex" , marginTop : "1vh"}}>
                         <div className="creator-followers">
-                            <h1>1.5M</h1>
+                            <h1>{UserInfoData?.Followers.length}</h1>
                             <h3>Followers</h3>
                         </div>
                         <div className="creator-following">
-                            <h1>1</h1>
+                            <h1>{UserInfoData?.Following.length}</h1>
                             <h3>Following</h3>
                         </div>
                     </div>
                     <div className="creator_summary">
-                        <p>Embracing my curves with confidence, I am the Big Bundah girl who owns every room she enters.</p>
-                        <p>My big bundah is not just a feature! I walk with a stride that speaks volumes, turning heads and breaking stereotypes</p>
+                        <p>{UserInfoData?.bio}</p>
                     </div>
                     <div className="creator-favourite-foods">
                         <h1>Favourite foods :</h1>
@@ -300,4 +308,4 @@ export default function Explore() {
       </Modal>
     </div>
   );
-}
+}   

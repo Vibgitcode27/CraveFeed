@@ -6,7 +6,6 @@ import React, { useEffect } from "react";
 import "./page.css";
 import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
-// import img4 from "../../_assets/image6.png"
 import img4 from "../../_assets/image6.png"
 import ExploreIcon from '@mui/icons-material/Explore';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
