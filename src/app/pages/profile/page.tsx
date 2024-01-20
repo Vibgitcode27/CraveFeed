@@ -5,28 +5,12 @@ import { useState , KeyboardEvent } from "react";
 import "./page.css";
 import Avatar from '@mui/material/Avatar';
 import img4 from "../../_assets/image6.png"
-import imgP from "../../_assets/post1.webp"
-import img6 from "../../_assets/image4.jpg"
-import p2 from "../../_assets/post2.webp"
-import p3 from "../../_assets/post3.webp"
 import CircularProgress from '@mui/material/CircularProgress';
 import PostInMyProfile from "@/app/compnents/PofilePosts";
 import FollowersInMyProfile from "@/app/compnents/ProfileFollowers";
 import FollowingInMyProfile from "@/app/compnents/ProfileFollowing";
 import { useAppSelector } from "@/app/globalRedux/hooks";
-import { Modal , Box , Typography , TextField } from "@mui/material";
-
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'red',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
+import { Modal , Box } from "@mui/material";
 
 export default function MyProfile(){
     const imgp4 = img4.src

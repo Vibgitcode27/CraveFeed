@@ -10,7 +10,7 @@ import img6 from "../../_assets/image4.jpg"
 import SearchIcon from '@mui/icons-material/Search';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite'
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import SendIcon from '@mui/icons-material/Send';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -18,9 +18,13 @@ import {Accordion , AccordionDetails , AccordionSummary , Typography} from "@mui
 import { Modal , Box} from "@mui/material";
 import { trpc } from "@/app/_trpc/client";
 import { useAppDispatch, useAppSelector } from "@/app/globalRedux/hooks";
-import { userPostData , pushUserId} from "@/app/globalRedux/features/users/postPageUser";
+import { userPostData , pushUserId , setVisitingUser} from "@/app/globalRedux/features/users/postPageUser";
+import { useRouter } from "next/navigation";
 
 export default function Explore() {
+    
+    const router = useRouter()
+
     const imgp7 = img6.src
     const imgpP = imgP.src
     const [image, setImage] = useState<string>();
@@ -28,7 +32,6 @@ export default function Explore() {
     const [foodTags, setFoodTags] = useState<string[]>([]);
     const [cuisineTags, setCuisineTags] = useState<string[]>([]);
     const dispatch = useAppDispatch()
-
     let userDataByFil;
     
     const okID = useAppSelector((state) => state.userInfo.viewUserId)
@@ -93,7 +96,6 @@ export default function Explore() {
     // HANDLE LIKES 
 
     const [like, setLike] = useState(
-        // postDataArray.map((post) => ({ id: post.id , like: "UNLIKE" }))
         postDataArray.map((post) => ({ id: post.id , like: "UNLIKE" }))
 
     );
@@ -254,6 +256,13 @@ export default function Explore() {
                     <div className="creator-favourite-foods">
                         <h1>Favourite foods :</h1>
                     </div>
+                    <button onClick={ () => {
+                        let id = UserInfoData?.id;
+                        dispatch(setVisitingUser({visitingUserId : id}))
+                        setTimeout(() => {
+                            router.push('/pages/visit-user-profile')        
+                        }, 2000);
+                    }} >View Profile</button>
                 </div>
             </div>
       </section>
