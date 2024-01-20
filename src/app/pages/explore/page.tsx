@@ -34,6 +34,16 @@ export default function Explore() {
     const dispatch = useAppDispatch()
     let userDataByFil;
     
+    // Upload Post Logic
+    const [uploadCaption , setUploadCaption] = useState<string>('')
+    const [uploadCity , setUploadCity] = useState<string>('')
+    const [uploadRestaurant , setUploadRestaurant] = useState<string>('')
+    const [uploadLocation , setUploadLocation] = useState<string>('')
+
+    const mutationUploadPost = trpc.newPost.useMutation();
+
+
+
     const okID = useAppSelector((state) => state.userInfo.viewUserId)
     userDataByFil = trpc.getUserById.useQuery(okID)
     console.log(userDataByFil.data)
@@ -117,6 +127,7 @@ export default function Explore() {
       }
       
       const mutation = trpc.likePost.useMutation()
+
 
       const handleLikePost = async (postId: number) => {
         try {
@@ -284,22 +295,16 @@ export default function Explore() {
                     </div>
                 </div>
                 <div className="inputs">
-                    <input type="text" placeholder="Add caption here" />
+                    <input type="text" onChange={(e) => setUploadCaption(e.target.value)}  placeholder="Add caption here" />
                         <div className="flex-input">
-                            <input type="text" placeholder="Add Location"/>
-                            <input type="text" placeholder="Enter Restaurent" id="flex-input2" />
+                            <input type="text" onChange={(e) => setUploadCity(e.target.value)} placeholder="Add City"/>
+                            <input type="text" onChange={(e) => setUploadRestaurant(e.target.value)} placeholder="Enter Restaurant" id="flex-input2" />
                         </div>
-                    <h3>Three foods you crave most </h3>
+                    <h3> </h3>
                     <div className="tags-input-container">
-                    {foodTags.map((tag, index) => (
-                        <div className="tag-item" key={index}>
-                            <span className="text">{tag}</span>
-                            <span className="close" onClick={() => removeTagFood(index)}>&times;</span>
-                        </div>
-                    ))}
-                        <input type="text" onKeyDown={handleKeyDownFood} style={{paddingLeft : "1vh"}} className="tags-input" placeholder="Enter your food"/>                        
+                        <input type="text" style={{paddingLeft : "1vh"}} onChange={(e) => e.target.value} className="tags-input" placeholder="Enter Location"/>                        
                     </div>
-                    <h3>Three cousines you like</h3>
+                    <h3>Three foods you crave most</h3>
                     <div className="tags-input-container">
                     {cuisineTags.map((tag, index) => (
                         <div className="tag-item" key={index}>
@@ -311,7 +316,9 @@ export default function Explore() {
                     </div>
                 </div>
                 <div>
-                    <button className="post-button">POST</button>
+                    <button className="post-button" onClick={() => { mutationUploadPost.mutate({userId : 1 , restaurantName : uploadRestaurant , dishName : "Random" , cityName : uploadCity , caption : uploadCaption , image : "image.png" , location : uploadLocation})
+                        window.location.reload();  
+                    }}>POST</button>
                 </div>
         </div>
         </Box>
