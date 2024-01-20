@@ -7,12 +7,12 @@ import Avatar from '@mui/material/Avatar';
 import img4 from "../../_assets/image6.png"
 import CircularProgress from '@mui/material/CircularProgress';
 import PostInMyProfile from "@/app/compnents/PofilePosts";
-import FollowersInMyProfile from "@/app/compnents/ProfileFollowers";
-import FollowingInMyProfile from "@/app/compnents/ProfileFollowing";
+// import FollowersInMyProfile from "@/app/compnents/ProfileFollowers";
+// import FollowingInMyProfile from "@/app/compnents/ProfileFollowing";
+import VisitorsFollowersInMyProfile from "@/app/compnents/VisitProfileFollowers";
+import VisitorsFollowingInMyProfile from "@/app/compnents/VisitProfileFollowing";
 import { trpc } from "@/app/_trpc/client";
 import { useAppSelector } from "@/app/globalRedux/hooks";
-import { currentUser} from "@/app/globalRedux/features/users/loginUser";
-import { followersUser , followingUsers , userPosts } from "@/app/globalRedux/features/users/postPageUser";
 
 export default function UserUpdate(){
     const imgp4 = img4.src
@@ -94,8 +94,8 @@ export default function UserUpdate(){
                 </div>
                 <div className="button_result">
                     {active === "POSTS" && <PostInMyProfile/>}
-                    {active === "FOLLOWERS" && <FollowersInMyProfile/>}
-                    {active === "FOLLOWING" && <FollowingInMyProfile/>}
+                    {active === "FOLLOWERS" && <VisitorsFollowersInMyProfile/>}
+                    {active === "FOLLOWING" && <VisitorsFollowingInMyProfile/>}
                 </div>
             </div>
       </section>
