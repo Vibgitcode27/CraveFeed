@@ -17,7 +17,7 @@ import { currentUser } from "@/app/globalRedux/features/users/loginUser";
 import { followersUser , followingUsers , userPosts } from "@/app/globalRedux/features/users/postPageUser";
 import CircularProgress from '@mui/material/CircularProgress';
 
-export default function SignUp() {
+export default function PostPageTSX() {
     const imgp4 = img4.src
     const [active , setActive] = useState("EXPLORE")
 
@@ -67,7 +67,6 @@ export default function SignUp() {
     const followers = useAppSelector((state) => state.userFollowers.numberOfFollowers);
     const followings = useAppSelector((state) => state.userFollowing.followingNumbers);
     const posts = useAppSelector((state) => state.userPost.postCount)
-
 
     return (
     <div className="mainDiv">

@@ -1,5 +1,4 @@
 import { createSlice , PayloadAction } from "@reduxjs/toolkit";
-import { userInfo } from "os";
 
 interface loggedInUser {
     userId : number | null
@@ -249,6 +248,25 @@ export const userInfoSlice = createSlice({
     }
 })
 
+interface VisitingUser {
+    visitingUserId : number,
+}
+
+const initialStateVisitingUser : VisitingUser = {
+    visitingUserId : 0
+}
+
+export const visitingUserSlice = createSlice({
+    name : "visitingUser" ,
+    initialState : initialStateVisitingUser,
+    reducers : {
+        setVisitingUser(state , action ) {
+            state.visitingUserId = action.payload;
+        }
+    }
+})
+
+export const { setVisitingUser } = visitingUserSlice.actions;
 export const { userPostData } = postDataSlice.actions;
 export const { followersUser } = followerSlice.actions;
 export const { followingUsers } = followingSlice.actions;
@@ -266,5 +284,6 @@ export default {
     followingData : followingDataSlice.reducer,
     followersData : followersDataSlice.reducer,
     loggedUser : loggedInUserSlice.reducer,
-    userInfo : userInfoSlice.reducer
+    userInfo : userInfoSlice.reducer,
+    visitingUser : visitingUserSlice.reducer,
 }
