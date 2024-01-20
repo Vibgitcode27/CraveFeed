@@ -205,38 +205,38 @@ export const appRouter = router({
 
             return { success: true };
         }),
-    unfollow: publicProcedure
-        .input(z.object({
-            followerId: z.number(),
-            followingId: z.number(),
-        }))
-        .mutation(async (opts) => {
-            const { followerId, followingId } = opts.input;
-
-            const [follower, following] = await Promise.all([
-                opts.ctx.prisma.Usera.findUnique({ where: { id: followerId } }),
-                opts.ctx.prisma.Usera.findUnique({ where: { id: followingId } }),
-            ]);
-
-            if (!follower || !following) {
-                throw new Error('Invalid user IDs.');
-            }
-            const existingRelation = await opts.ctx.prisma.Follower.findFirst({
-                where: {
-                    followerId,
-                    followingId,
-                },
-            });
-            if (!existingRelation) {
-                throw new Error('Not following this user.');
-            }
-            await opts.ctx.prisma.Follower.delete({
-                where: {
-                    id: existingRelation.id,
-                },
-            });
-            return { success: true }; // To test the code remove later
-        }),
+    // unfollow: publicProcedure
+    //     .input(z.object({
+    //         followerId: z.number(),
+    //         followingId: z.number(),
+    //     }))
+    //     .mutation(async (opts) => {
+    //         const { followerId, followingId } = opts.input;
+    //
+    //         const [follower, following] = await Promise.all([
+    //             opts.ctx.prisma.Usera.findUnique({ where: { id: followerId } }),
+    //             opts.ctx.prisma.Usera.findUnique({ where: { id: followingId } }),
+    //         ]);
+    //
+    //         if (!follower || !following) {
+    //             throw new Error('Invalid user IDs.');
+    //         }
+    //         const existingRelation = await opts.ctx.prisma.Follower.findFirst({
+    //             where: {
+    //                 followerId,
+    //                 followingId,
+    //             },
+    //         });
+    //         if (!existingRelation) {
+    //             throw new Error('Not following this user.');
+    //         }
+    //         await opts.ctx.prisma.Follower.delete({
+    //             where: {
+    //                 id: existingRelation.id,
+    //             },
+    //         });
+    //         return { success: true }; // To test the code remove later
+    //     }),
     newPost: publicProcedure
         .input(z.object({
             userId: z.number(),
