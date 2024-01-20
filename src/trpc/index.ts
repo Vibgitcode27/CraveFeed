@@ -63,6 +63,28 @@ export const appRouter = router({
             })
             return postData
         }),
+    followingStatus : publicProcedure
+        .input(z.object({
+            followerId : z.number(),
+            followingId : z.number()
+        }))
+        .query(async (opts) => {
+            let followerId = opts.input.followerId;
+            let followingId = opts.input.followingId;
+
+            const existingRelation = await opts.ctx.prisma.Follower.findFirst({
+                where: {
+                    followerId,
+                    followingId,
+                },
+            });
+
+            if(existingRelation)
+            {
+                return 1;
+            }
+            return 0;
+        }),
     // editPost : publicProcedure 
     //     .input(z.object({
     //         name : z.string(),

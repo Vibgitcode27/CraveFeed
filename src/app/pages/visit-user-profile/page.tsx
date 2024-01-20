@@ -23,6 +23,17 @@ export default function UserUpdate(){
     // const followers = useAppSelector((state) => state.userFollowers.numberOfFollowers);
     // const followings = useAppSelector((state) => state.userFollowing.followingNumbers);
     // const posts = useAppSelector((state) => state.userPost.postCount)
+    
+    const mutation = trpc.followUnfollow.useMutation()
+    
+    let followerId = useAppSelector((state) => state.followerFollowing.followerId)
+    let followingId = useAppSelector((state) => state.followerFollowing.followingId)
+
+    console.log("followerFollowing " , followerId , followingId)
+    let isFollowing = trpc.followingStatus.useQuery({followerId , followingId})
+
+    console.log("isFollowing ?????" , isFollowing.data)
+
     let visitedUserId = useAppSelector((state) => state.visitingUser.visitingUserId.visitingUserId)
     console.log(visitedUserId)
     const user = trpc.getUserById.useQuery({ id: visitedUserId });
@@ -75,7 +86,16 @@ export default function UserUpdate(){
                                     )}</h1>
                             <h3>Following</h3>
                         </div>
-                        <button className="Edit-Profile">UnFollow</button>
+                        <button className="Edit-Profile" onClick={() => {
+                            mutation.mutate({ followerId , followingId});
+                        }} >
+                            {isFollowing.data === 1?(
+                                "Unfollow"
+                            ):(
+                                "Follow"
+                            )
+                            }
+                        </button>
                     </div>
                     <p>Ivanka James: Culinary maven weaving flavors into unforgettable symphonies, turning every meal into a celebration of taste and culture.</p>
                 </div>

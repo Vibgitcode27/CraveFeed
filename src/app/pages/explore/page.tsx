@@ -18,7 +18,7 @@ import {Accordion , AccordionDetails , AccordionSummary , Typography} from "@mui
 import { Modal , Box} from "@mui/material";
 import { trpc } from "@/app/_trpc/client";
 import { useAppDispatch, useAppSelector } from "@/app/globalRedux/hooks";
-import { userPostData , pushUserId , setVisitingUser} from "@/app/globalRedux/features/users/postPageUser";
+import { userPostData , pushUserId , setVisitingUser , toggleFollowerFollowing} from "@/app/globalRedux/features/users/postPageUser";
 import { useRouter } from "next/navigation";
 
 export default function Explore() {
@@ -259,9 +259,10 @@ export default function Explore() {
                     <button onClick={ () => {
                         let id = UserInfoData?.id;
                         dispatch(setVisitingUser({visitingUserId : id}))
+                        dispatch(toggleFollowerFollowing({followerId : 1 , followingId : id}))
                         setTimeout(() => {
                             router.push('/pages/visit-user-profile')        
-                        }, 2000);
+                        }, 400);
                     }} >View Profile</button>
                 </div>
             </div>

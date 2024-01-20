@@ -266,6 +266,28 @@ export const visitingUserSlice = createSlice({
     }
 })
 
+interface followerFollowing {
+    followerId : number,
+    followingId : number
+}
+
+const initialStateFollowerFollowing : followerFollowing = {
+    followerId : 0 ,
+    followingId : 0
+}
+
+export const followerFollowingSlice = createSlice({
+    name : "followerFollowing" ,
+    initialState : initialStateFollowerFollowing,
+    reducers : {
+        toggleFollowerFollowing(state , action ) {
+            state.followerId = action.payload.followerId;
+            state.followingId = action.payload.followingId;
+        }
+    }
+})
+
+export const { toggleFollowerFollowing } = followerFollowingSlice.actions;
 export const { setVisitingUser } = visitingUserSlice.actions;
 export const { userPostData } = postDataSlice.actions;
 export const { followersUser } = followerSlice.actions;
@@ -286,4 +308,5 @@ export default {
     loggedUser : loggedInUserSlice.reducer,
     userInfo : userInfoSlice.reducer,
     visitingUser : visitingUserSlice.reducer,
+    followerFollowing : followerFollowingSlice.reducer,
 }

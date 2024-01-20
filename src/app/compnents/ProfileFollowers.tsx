@@ -13,7 +13,7 @@ import { userFollowersData } from "../globalRedux/features/users/postPageUser";
 export default function FollowersInMyProfile(){
 
     const dispatch = useAppDispatch();
-
+    const mutation = trpc.followUnfollow.useMutation()
     // const following = trpc.getFollowingById.useQuery({id : 1})
     // console.log(following)
 
@@ -83,7 +83,9 @@ export default function FollowersInMyProfile(){
                     <h2>{value.Usera.username}</h2>
 
                 </div>
-                <button>Remove</button>
+                <button onClick={() => {
+                     mutation.mutate({ followerId : value.followerId , followingId : 1})
+                }}>Remove</button>
                 </div>))
                 }
         </div>
