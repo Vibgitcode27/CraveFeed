@@ -161,7 +161,7 @@ export const appRouter = router({
                 },
             })
         }) ,
-    follow: publicProcedure
+    followUnfollow: publicProcedure
         .input(z.object({
             followerId: z.number(),
             followingId: z.number(),
@@ -188,7 +188,13 @@ export const appRouter = router({
             });
 
             if (existingRelation) {
-                throw new Error('Already following this user.');
+                await opts.ctx.prisma.Follower.delete({
+                    where: {
+                        id: existingRelation.id,
+                    },
+                });
+
+                return { success: true, message: 'Successfully unfollowed the user.' };
             }
             await opts.ctx.prisma.Follower.create({
                 data: {
@@ -197,9 +203,8 @@ export const appRouter = router({
                 },
             });
 
-            return { success: true }; // To test the code remove later
+            return { success: true };
         }),
-
     unfollow: publicProcedure
         .input(z.object({
             followerId: z.number(),
