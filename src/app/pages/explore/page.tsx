@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import "./page.css";
 import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
-import imgP from "../../_assets/post1.webp"
 import img6 from "../../_assets/image4.jpg"
 import SearchIcon from '@mui/icons-material/Search';
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -24,9 +23,21 @@ import { useRouter } from "next/navigation";
 export default function Explore() {
     
     const router = useRouter()
-
     const imgp7 = img6.src
-    const imgpP = imgP.src
+
+    let [signedUrl, setSignedUrl] = useState<string | null>(null);
+
+    useEffect(() => {
+        // Fetch signedUrl and update state
+        async function getImageURL() {
+            const responseImage = await fetch(`https://image-upload-nq2i.onrender.com/url/Website.png`);
+            signedUrl = await responseImage.text();
+            setSignedUrl(signedUrl);
+        }
+
+        getImageURL();
+    }, []);
+
     const [image, setImage] = useState<string>();
     const [open, setOpen] = useState(false);
     const [foodTags, setFoodTags] = useState<string[]>([]);
@@ -110,6 +121,16 @@ export default function Explore() {
 
     );
 
+    async function getImageURL()
+    {
+        const responseImage = await fetch(`https://image-upload-nq2i.onrender.com/url/Website.png`);
+        signedUrl = await responseImage.text();
+    }
+
+    getImageURL();
+
+
+
     function handleLike(postId: any) {
         setLike((prevLikes) =>
           prevLikes.map((prevLike) =>
@@ -140,7 +161,7 @@ export default function Explore() {
             // Handle errors
             console.error(error);
         }
-    };
+      };
 
     return (
     <div className="mainDiv">
@@ -177,7 +198,9 @@ export default function Explore() {
                                         dispatch(pushUserId({id}));
                                     }}>User Info</button>
                                 </div>
-                                <img src={imgpP} alt="" />
+                                {signedUrl && (
+                                    <img src={signedUrl} alt="" />
+                                )}
                                 <div className="reactions">
                                     {/* {like.find((prevLike) => prevLike.id === value.id)?.like === "LIKE" ? (
                                         <FavoriteIcon style={{ color: "crimson" }} onClick={() => handleUnLike(value.id)} />

@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2254706-e255-4d6b-ad33-85a8296ee344" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/compnents/PofilePosts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/compnents/PofilePosts.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/compnents/ProfileFollowers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/compnents/ProfileFollowers.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/compnents/ProfileFollowing.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/compnents/ProfileFollowing.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/explore/page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/explore/page.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/explore/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/explore/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/post/page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/post/page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/post/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/post/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/profile/page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/profile/page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/visit-user-profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/visit-user-profile/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/styles/ProfileFollowers.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/styles/ProfileFollowers.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/styles/ProfilePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/styles/ProfilePage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/trpc/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/trpc/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +64,7 @@
       <workItem from="1704852011868" duration="1025000" />
       <workItem from="1705746128080" duration="8000" />
       <workItem from="1705748513178" duration="1280000" />
-      <workItem from="1705777141530" duration="11811000" />
+      <workItem from="1705777141530" duration="12868000" />
     </task>
     <servers />
   </component>
@@ -99,7 +87,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/app/pages/explore/page.tsx</url>
-          <line>9</line>
+          <line>8</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
