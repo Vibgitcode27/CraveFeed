@@ -48,7 +48,7 @@ export default function UserUpdate(){
     const followings = following.data?.length;
     const posts = post.data?.length
     return (
-    <div className="mainDiv">
+    <div className="mainDiv , visitUsermainDiv">
         <section className="sec2">
             <div className="secondary-div1">
                 <Avatar alt="Profile Pic" src={imgp4} style={{position : "relative" , width : "20vh" , height : "20vh" , marginTop : "5vh" , marginLeft : "16vh" , border: "2px solid black"}}/>
