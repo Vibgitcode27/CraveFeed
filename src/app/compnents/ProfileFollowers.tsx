@@ -74,7 +74,7 @@ export default function FollowersInMyProfile(){
         <div className="follower-main-div">
                 {fetchedProfile.map((value, index) => (
                     <div>
-                    <Avatar alt="Profile Pic" src={img4.src} style={{position : "relative" , width : "10vh" , height : "10vh" , marginTop : "1vh" , marginLeft : "16vh" , border: "2px solid black"}}/>
+                    <Avatar alt="Profile Pic" src={img4.src} style={{position : "relative" , width : "10vh" , height : "10vh" , marginTop : "1vh" , marginLeft : "8vh" , border: "2px solid black"}}/>
                 <div className="follower-profile">
                     {/* <h1>{value.FollowingUser.name}</h1> */}
                     <h1>{value.Usera.name}</h1>

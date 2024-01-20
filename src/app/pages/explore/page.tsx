@@ -170,7 +170,7 @@ export default function Explore() {
                                     <div>
                                     {/* <h2>{value.Usera.name}</h2> */}
                                         <h2>{value.Usera.name}</h2>
-                                        <h3><LocationOnIcon style={{color : "gray" , height : "17px" , marginTop : "-0.4vh" , marginRight : "-0.4vh"}}/>{value.city}</h3>
+                                        <h3 onClick={() => {router.push(`https://www.google.com/maps/search/?api=1&query=${value.Location}`)}}><LocationOnIcon style={{color : "gray" , height : "17px" , marginTop : "-0.4vh" , marginRight : "-0.4vh"}}/>{value.Location}</h3>
                                     </div>
                                     <button onClick={() => {
                                         const id = value.Usera.id;
@@ -265,7 +265,7 @@ export default function Explore() {
                         <p>{UserInfoData?.bio}</p>
                     </div>
                     <div className="creator-favourite-foods">
-                        <h1>Favourite foods :</h1>
+                        {/*<h1>Favourite foods :</h1>*/}
                     </div>
                     <button onClick={ () => {
                         let id = UserInfoData?.id;

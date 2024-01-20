@@ -110,26 +110,26 @@ export default function PostPageTSX() {
             <div className="InPages">
                 <div className="explore" onClick={() => setActive("EXPLORE")}>
                     <button>
-                        <ExploreIcon/>
+                        <ExploreIcon style={{fontSize : "3.2vh" , marginTop : "0.8px"}}/>
                         <h1>Explore</h1>
                     </button>
                 </div>
                 <div className="forYou">
                     <button>
-                        <SupervisedUserCircleIcon/>
+                        <SupervisedUserCircleIcon style={{fontSize : "3.2vh" , marginTop : "0.8px"}} />
                         <h1>For You</h1>
                     </button>
                 </div>
                     <div className="profile" onClick={ () => setActive("PROFILE")}>
                         <button>
-                            <PersonIcon/>
+                            <PersonIcon style={{fontSize : "3.2vh" , marginTop : "0.8px"}} />
                             <h1>Profile</h1>
                         </button>
                     </div>
             </div>
             <div className="logout">
                 <div>
-                    <LogoutIcon style={{marginTop: "2.5vh" , marginLeft : "2vh"}}/>
+                    <LogoutIcon style={{fontSize : "3.2vh" , marginTop : "2.4vh" , marginLeft : "1.5vh"}}/>
                     <h1>Logout</h1>
                 </div>
             </div>

@@ -13,7 +13,7 @@ import VisitorsFollowersInMyProfile from "@/app/compnents/VisitProfileFollowers"
 import VisitorsFollowingInMyProfile from "@/app/compnents/VisitProfileFollowing";
 import { trpc } from "@/app/_trpc/client";
 import { useAppSelector } from "@/app/globalRedux/hooks";
-
+import VisitorsPostsInMyProfile from "@/app/compnents/VisitProfilePosts";
 export default function UserUpdate(){
     const imgp4 = img4.src
     const [active , setActive] = useState("POSTS")
@@ -113,7 +113,7 @@ export default function UserUpdate(){
                     </button>
                 </div>
                 <div className="button_result">
-                    {active === "POSTS" && <PostInMyProfile/>}
+                    {active === "POSTS" && <VisitorsPostsInMyProfile/>}
                     {active === "FOLLOWERS" && <VisitorsFollowersInMyProfile/>}
                     {active === "FOLLOWING" && <VisitorsFollowingInMyProfile/>}
                 </div>

@@ -31,7 +31,6 @@
 }
 
 .sub-div >img {
-    height: 10vh;
     width: 39.985%;
     height: 20%;
     margin-left: 40vh;
@@ -44,7 +43,6 @@
     position: relative;
     top: -83.5vh;
     left: 23vh;
-    color: aliceblue;
     border: 2px solid #000000;
     padding: 0.5vh 4vh;
     font-size: 2.5vh;
@@ -69,5 +67,10 @@
     margin-top: 4vh;
     height : 5vh;
     width:  18vh;
-    margin-left: 10vh;
+    margin-left: 15vh;
+}
+
+.creator > button:hover {
+    background-color: black;
+    color: white;
 }

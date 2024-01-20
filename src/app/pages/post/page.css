@@ -22,15 +22,15 @@ input[type=text]:focus {
 
 .username > h1 {
     font-weight: bold;
-    width: 22vh;
+    width: 26vh;
     margin: auto;
-    font-size: 20px;
+    font-size: 17px;
 }
 
 .username > h2 {
     width: 20vh;
     margin: auto;
-    font-size: 16px;
+    font-size: 14px;
     color: rgba(0, 0, 0, 0.597);
 }
 
@@ -54,15 +54,15 @@ input[type=text]:focus {
     border-right: 2px solid rgba(152, 150, 150, 0.597);
 }
 .post > h1 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bolder;
     padding-right: 5vh;
-    padding-left: 5px;
+    padding-left: 2vh;
 }
 
 .post > h3 {
     font-size: 15px;
-    padding-left: 3px;
+    margin-right: 1vh;
 }
 
 .followers {
@@ -72,29 +72,29 @@ input[type=text]:focus {
 }
 
 .followers > h1 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bolder;
     /* padding-right: 5vh; */
-    padding-left: 6vh;
+    padding-left: 6.5vh;
 }
 
 .followers > h3 {
     font-size: 15px;
-    /* padding-left: 20px; */
+    margin-right: 1vh;
     width: 15vh;
     justify-content: center;
 }
 
 .following > h1 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bolder;
     padding-right: 10vh;
-    padding-left: 35px;
+    padding-left: 38px;
 }
 
 .following > h3 {
     font-size: 15px;
-    padding-left: 25px;
+    padding-left: 2.5vh;
 }
 
 /* Inner Pages */
@@ -104,8 +104,10 @@ input[type=text]:focus {
 .explore {
     display: flex;
     margin-left: 1vh;
-    padding: 4px;
+    padding: 1px;
     cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 2vh;
 }
 
 .explore > button {
@@ -124,8 +126,10 @@ input[type=text]:focus {
     display : flex;
     margin-top: 1.5vh;
     margin-left: 1vh;
-    padding: 4px;
+    padding: 1px;
     cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 2vh;
 }
 
 .forYou > button {
@@ -144,9 +148,10 @@ input[type=text]:focus {
     display: flex;
     margin-top: 1.5vh;
     margin-left: 1vh;
-    padding-bottom: 3.5vh;
-    padding: 4px;
+    padding: 1px;
     cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 2vh;
 }
 .profile > button {
     display: flex;
@@ -170,6 +175,7 @@ input[type=text]:focus {
     padding: 0px;
     width: 100%;
     display: flex;
+    font-size: 15px;
 }
 .logout > div:hover {
     color: rgb(168, 0, 9);
@@ -187,7 +193,6 @@ input[type=text]:focus {
 }
 
 .search {
-    margin-top: 2vh;
     margin-left: 7vh;
     height: 12vh;
     width: 153vh;
@@ -276,14 +281,15 @@ input[type=text]:focus {
 .content-post > div > div > h2 {
     padding-top: 1.5vh;
     margin-left: 1vh;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bolder;
 }
 
 .content-post > div > div > h3 {
     margin-top: -0.3vh;
     margin-left: 1vh;
-    font-size: 14px;
+    font-size: 12px;
+    cursor: pointer;
 }
 
 .content-post > div > button {
@@ -359,6 +365,7 @@ input[type=text]:focus {
     border-radius: 10px;
     padding: 10px 0px;
     border: 1px solid black;
+    height: 83.5vh;
 }
 
 /* .creator > img {

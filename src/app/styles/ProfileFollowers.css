@@ -1,5 +1,8 @@
 .follower-main-div{
-    margin: 2vh 15vh;
+    /*margin: 2vh 15vh;*/
+    margin-top: 2vh;
+    margin-left: 24vh;
+    margin-right: 4vh;
     height: 61vh;
     overflow-y: scroll;
     -ms-overflow-style: none;
@@ -17,30 +20,32 @@
     background-color: rgb(224, 224, 224);
     padding-bottom: 1vh;
     margin-bottom: 3vh;
+    z-index: 99;
 }
 
 .follower-main-div > div > button {
     background-color: rgb(248, 193, 193);
     border-radius: 10vh;
-    margin-top: 3vh;
+    margin-top: 3.5vh;
     margin-left: 40vh;
-    height: 6vh;
-    width: 25vh;
+    height: 5vh;
+    width: 20vh;
 }
 
 .follower-profile {
-    width: 50vh;
+    width: 30vh;
 }
 
 .follower-profile > h1 {
     font-weight: bold;
     margin-top: 3vh;
     margin-left: 2vh;
-    font-size: 20px;
+    font-size: 17.5px;
 }
 
 .follower-profile > h2 {
     margin-left: 2vh;
-    font-size: 17px;
+    font-size: 14px;
+    margin-top: -0.5vh;
     color: rgba(0, 0, 0, 0.597);
 }

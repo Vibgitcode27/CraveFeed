@@ -11,9 +11,8 @@ import {Accordion, AccordionDetails, AccordionSummary, Typography} from "@mui/ma
 import {trpc} from "@/app/_trpc/client";
 import imgP from "../_assets/post1.webp"
 import img6 from "../_assets/image4.jpg"
-import {useAppDispatch} from "@/app/globalRedux/hooks";
+import {useAppDispatch, useAppSelector} from "@/app/globalRedux/hooks";
 import {useRouter} from "next/navigation";
-
 // const imageArray = [
 //     img1.src,
 //     img2.src,
@@ -35,14 +34,17 @@ import {useRouter} from "next/navigation";
 //       </div>
 //     );
 //   };
-const PostInMyProfile = () => {
+const VisitorsPostsInMyProfile = () => {
 
-    const dispatch = useAppDispatch();
     const router = useRouter()
+    const dispatch = useAppDispatch();
+
+    let visitedUserId = useAppSelector((state) => state.visitingUser.visitingUserId.visitingUserId)
+
     const imgp7 = img6.src
     const imgpP = imgP.src
 
-    const postData = trpc.getUserPosts.useQuery({userId : 1})
+    const postData = trpc.getUserPosts.useQuery({userId : visitedUserId})
     const postDataArray = postData.data;
     // HANDLE VIEW COMMENTS BUTTON
     const [expandedArray, setExpandedArray] = React.useState(new Array(postDataArray?.length).fill(false));
@@ -83,7 +85,7 @@ const PostInMyProfile = () => {
                             <div>
                                 {/* <h2>{value.Usera.name}</h2> */}
                                 <h2>{value.Usera.name}</h2>
-                                <h3 onClick={() => {router.push(`https://www.google.com/maps/search/?api=1&query=${value.Location}`)}}><LocationOnIcon style={{color : "gray" , height : "17px" , marginTop : "-0.4vh" , marginRight : "-0.4vh"}}/>{value.Location}</h3>
+                                <h3 onClick={() => {router.push(`https://www.google.com/maps/search/?api=1&query=${value.Location}`)}} ><LocationOnIcon style={{color : "gray" , height : "17px" , marginTop : "-0.4vh" , marginRight : "-0.4vh"}}/>{value.Location}</h3>
                             </div>
                         </div>
                         <img src={imgpP} alt="" />
@@ -159,5 +161,5 @@ const PostInMyProfile = () => {
         </div>
     );
 };
-  
-  export default PostInMyProfile;
+
+export default VisitorsPostsInMyProfile;

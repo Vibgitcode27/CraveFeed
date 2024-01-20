@@ -295,8 +295,13 @@ export const appRouter = router({
                     userId: userId,
                 },
                 include: {
+                    Usera : true,
                     Likes: true,
-                    Comments: true,
+                    Comments: {
+                        include : {
+                            Usera : true
+                        }
+                    },
                 },
             });
             return userPosts;
@@ -325,7 +330,7 @@ export const appRouter = router({
                 take: 10, //No of posts to take change accordingly
             });
             return userPosts;
-        }),          
+        }),
     addCommentToPost: publicProcedure
         .input(z.object({
             userId: z.number(),
