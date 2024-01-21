@@ -6,12 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b2254706-e255-4d6b-ad33-85a8296ee344" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/migrations/20240120095253_init/migration.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/migrations/migration_lock.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globalRedux/features/users/postPageUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globalRedux/features/users/postPageUser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globalRedux/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globalRedux/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/post/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/post/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/signUp/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/signUp/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +63,8 @@
       <workItem from="1704852011868" duration="1025000" />
       <workItem from="1705746128080" duration="8000" />
       <workItem from="1705748513178" duration="1280000" />
-      <workItem from="1705777141530" duration="30633000" />
+      <workItem from="1705777141530" duration="31675000" />
+      <workItem from="1705829815382" duration="304000" />
     </task>
     <servers />
   </component>
@@ -93,13 +88,11 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/app/pages/explore/page.tsx</url>
           <line>8</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/app/pages/post/page.tsx</url>
           <line>2</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
