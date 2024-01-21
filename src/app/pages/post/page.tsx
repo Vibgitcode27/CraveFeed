@@ -16,7 +16,7 @@ import { trpc } from "@/app/_trpc/client";
 import { currentUser } from "@/app/globalRedux/features/users/loginUser";
 import { followersUser , followingUsers , userPosts } from "@/app/globalRedux/features/users/postPageUser";
 import CircularProgress from '@mui/material/CircularProgress';
-import ForYou from "../forYou/page";
+import ForYou from "../explore/forYou/page";
 
 export default function PostPageTSX() {
     const imgp4 = img4.src

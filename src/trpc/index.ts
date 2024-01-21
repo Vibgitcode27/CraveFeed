@@ -424,21 +424,20 @@ export const appRouter = router({
             const likedPosts = user.Likes.map((like) => like.Post);
             return likedPosts;
         }),
-        modelRecommandation: publicProcedure
-    .input (z.object({
-        user_preferences: z.string(),
-        previous_choices: z.array(z.string()),
-      }))
-    .query(async (opts) => {
+    getTheFuckOutOfHere: publicProcedure
+        .input (z.object({
+            user_preferences: z.string(),
+            previous_choices: z.array(z.string()),
+        }))
+        .query(async (opts) => {
       // Call the recommendation API
-      const response = await axios.post('https://cravefeed-model.onrender.com/', opts.input);
-      const recommendedDishes = response.data;
-
+        const response = await axios.post('https://cravefeed-model.onrender.com/', opts.input);
+        const recommendedDishes = response.data.recommendations;
       // Query the database for posts that match the recommended dishes
-      const posts = await opts.ctx.prisma.Post.findMany({
+        const posts = await opts.ctx.prisma.Post.findMany({
         where: {
           dish: {
-            in: recommendedDishes,
+            in : recommendedDishes,
           },
         },
       });

@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import "./page.css";
 import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
-import img6 from "../../_assets/image4.jpg"
 import SearchIcon from '@mui/icons-material/Search';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -25,7 +24,6 @@ import { set } from "zod";
 export default function ForYou() {
 
     const router = useRouter()
-    const imgp7 = img6.src
 
     const mutation = trpc.likePost.useMutation()
 
@@ -43,11 +41,11 @@ export default function ForYou() {
     }, []);
 
 
-    let modelDataPosts = trpc.modelRecommandation.useQuery({user_preferences : "Chicken, Sugar, None, None, None, Dairy" , previous_choices : ["Butter Chicken"]})
+    let modelDataPosts = trpc.getTheFuckOutOfHere.useQuery({user_preferences : "Chicken, Sugar, None, None, None, Dairy" , previous_choices : ["Butter Chicken"]})
+        
     
-    setTimeout(() => {
-        console.log("This is modelData" , modelDataPosts.data)
-    }, 10000)
+    setTimeout(() => {console.log("This is modelData" , modelDataPosts.data)},5000)
+
 
     let [image, setImage] = useState<string>();
     const [open, setOpen] = useState(false);
@@ -236,7 +234,7 @@ export default function ForYou() {
                         // {imageArray.map((value, index) => (
                             <div className="content-post" key={index}>
                                 <div className = "post-div1" style={{display : "flex"}}>
-                                    <Avatar alt="Remy Sharp" src={imgp7} style={{border : "2px solid black" , position : "relative" , width : "7vh" , height : "7vh" , marginTop : "1vh" , marginBottom : "1vh" , marginLeft : "2vh"}}/>
+                                    <Avatar alt="Remy Sharp" style={{border : "2px solid black" , position : "relative" , width : "7vh" , height : "7vh" , marginTop : "1vh" , marginBottom : "1vh" , marginLeft : "2vh"}}/>
                                     <div>
                                     {/* <h2>{value.Usera.name}</h2> */}
                                         <h2>{value.Usera.name}</h2>
@@ -302,7 +300,7 @@ export default function ForYou() {
                                             value.Comments.map((comment, commentIndex) => (
                                                 <div key={commentIndex} className="comment-load-main-div">
                                                     <div style={{ display: "flex" }} className="comment-load-div">
-                                                        <Avatar alt="Remy Sharp" src={imgp7} style={{ position: "relative",border: "1px solid black" , width: "6vh", height: "6vh", marginBottom: "1vh" }} />
+                                                        <Avatar alt="Remy Sharp" style={{ position: "relative",border: "1px solid black" , width: "6vh", height: "6vh", marginBottom: "1vh" }} />
                                                         <div className="comment-name-username">
                                                             <h2>{comment.Usera.name}</h2>
                                                         </div>
