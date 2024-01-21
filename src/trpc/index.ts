@@ -1,6 +1,7 @@
 import { trpc } from "@/app/_trpc/client";
 import {publicProcedure, router} from "@/trpc/trpc";
 import { z } from "zod"
+import axios from "axios";
 
 export const appRouter = router({
     test : publicProcedure
@@ -423,6 +424,26 @@ export const appRouter = router({
             const likedPosts = user.Likes.map((like) => like.Post);
             return likedPosts;
         }),
-})
+        modelRecommandation: publicProcedure
+    .input (z.object({
+        user_preferences: z.string(),
+        previous_choices: z.array(z.string()),
+      }))
+    .query(async (opts) => {
+      // Call the recommendation API
+      const response = await axios.post('https://cravefeed-model.onrender.com/', opts.input);
+      const recommendedDishes = response.data;
+
+      // Query the database for posts that match the recommended dishes
+      const posts = await opts.ctx.prisma.Post.findMany({
+        where: {
+          dish: {
+            in: recommendedDishes,
+          },
+        },
+      });
+      return posts;
+    }),
+});
 
 export type AppRouter = typeof appRouter;

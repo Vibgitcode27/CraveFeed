@@ -16,6 +16,7 @@ import { trpc } from "@/app/_trpc/client";
 import { currentUser } from "@/app/globalRedux/features/users/loginUser";
 import { followersUser , followingUsers , userPosts } from "@/app/globalRedux/features/users/postPageUser";
 import CircularProgress from '@mui/material/CircularProgress';
+import ForYou from "../forYou/page";
 
 export default function PostPageTSX() {
     const imgp4 = img4.src
@@ -59,6 +60,24 @@ export default function PostPageTSX() {
             dispatch(userPosts(post.data?.length))
         }
     })
+
+    // Fetching PRofile image
+
+    const imageUrl = trpc.getUserById.useQuery({id : 1})
+
+    let [signedUrl , setSignedUrl] = useState<string | undefined>(undefined)
+
+    var notOkayImage = imageUrl.data?.profilepicture
+    useEffect(() => {
+        async function getImageUrl() {
+            const response = await fetch(`https://image-upload-nq2i.onrender.com/url/${notOkayImage}`);
+            let signedUrl = await response.text();
+            setSignedUrl(signedUrl);
+        }
+
+        getImageUrl();
+    })  
+
     // Fetching State Values
 
     const id = useAppSelector((state) => state.currentUser.user.id);
@@ -72,7 +91,7 @@ export default function PostPageTSX() {
     <div className="mainDiv">
       <section className="sec1">
             <h1>CRAVEFEED</h1>
-            <Avatar alt="Remy Sharp" src={imgp4} style={{position : "relative" , width : "13vh" , height : "13vh" , marginTop : "9vh" , marginLeft : "16vh" , border: "2px solid black"}}/>
+            <Avatar alt="Remy Sharp" src={signedUrl || undefined} style={{position : "relative" , width : "13vh" , height : "13vh" , marginTop : "9vh" , marginLeft : "16vh" , border: "2px solid black"}}/>
             <div className="username">
                 <h1>{id !== null ? (
                         name
@@ -114,7 +133,7 @@ export default function PostPageTSX() {
                         <h1>Explore</h1>
                     </button>
                 </div>
-                <div className="forYou">
+                <div className="forYou" onClick={ () => setActive("FOR YOU")}>
                     <button>
                         <SupervisedUserCircleIcon style={{fontSize : "3.2vh" , marginTop : "0.8px"}} />
                         <h1>For You</h1>
@@ -136,6 +155,7 @@ export default function PostPageTSX() {
       </section>
       {active === "EXPLORE" && <Explore/>}
       {active === "PROFILE" && <MyProfile/>}
+      {active === "FOR YOU" && <ForYou/>}
     </div>
   );
 }
