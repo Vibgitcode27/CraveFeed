@@ -48,8 +48,8 @@
     font-size: 2.5vh;
     font-weight: 600;
     border-radius: 15vh;
-    margin-top: 3vh;
-    margin-left: 87vh;
+    margin-top: 13vh;
+    margin-left: 75vh;
     background-color: #000000; /* Updated background color */
     color: #ffffff;
 }
@@ -67,7 +67,7 @@
     margin-top: 4vh;
     height : 5vh;
     width:  18vh;
-    margin-left: 15vh;
+    margin-left: 12vh;
 }
 
 .creator > button:hover {

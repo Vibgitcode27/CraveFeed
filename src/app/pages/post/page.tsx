@@ -6,6 +6,7 @@ import React, { useEffect } from "react";
 import "./page.css";
 import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
+import img6 from "../../_assets/image4.png"
 import img4 from "../../_assets/image6.png"
 import ExploreIcon from '@mui/icons-material/Explore';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
@@ -16,7 +17,7 @@ import { trpc } from "@/app/_trpc/client";
 import { currentUser } from "@/app/globalRedux/features/users/loginUser";
 import { followersUser , followingUsers , userPosts } from "@/app/globalRedux/features/users/postPageUser";
 import CircularProgress from '@mui/material/CircularProgress';
-import ForYou from "../explore/forYou/page";
+import ForYou from "../forYou/page";
 
 export default function PostPageTSX() {
     const imgp4 = img4.src
@@ -91,12 +92,12 @@ export default function PostPageTSX() {
     <div className="mainDiv">
       <section className="sec1">
             <h1>CRAVEFEED</h1>
-            <Avatar alt="Remy Sharp" src={signedUrl || undefined} style={{position : "relative" , width : "13vh" , height : "13vh" , marginTop : "9vh" , marginLeft : "16vh" , border: "2px solid black"}}/>
+            <Avatar alt="Remy Sharp" src={signedUrl || undefined} style={{position : "relative" , width : "13vh" , height : "13vh" , marginTop : "9vh" , marginLeft : "13vh" , border: "2px solid black"}}/>
             <div className="username">
                 <h1>{id !== null ? (
                         name
                     ) : (
-                        <CircularProgress color="inherit" size={35} sx={{marginLeft : 4.5}}/>
+                        <CircularProgress color="inherit" size={35} sx={{marginLeft : "6vh"}}/>
                     )}</h1>
                 <h2>{username}</h2>
             </div>

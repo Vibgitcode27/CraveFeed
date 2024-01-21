@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import "./page.css";
 import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
+import img6 from "../../_assets/image4.jpg"
 import SearchIcon from '@mui/icons-material/Search';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -18,13 +19,11 @@ import { trpc } from "@/app/_trpc/client";
 import { useAppDispatch, useAppSelector } from "@/app/globalRedux/hooks";
 import { userPostData , pushUserId , setVisitingUser , toggleFollowerFollowing} from "@/app/globalRedux/features/users/postPageUser";
 import { useRouter } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
-import { set } from "zod";
 
 export default function ForYou() {
 
     const router = useRouter()
-
+    const imgpP = img6.src
     const mutation = trpc.likePost.useMutation()
 
     let [signedUrl, setSignedUrl] = useState<string | null>(null);
@@ -230,11 +229,11 @@ export default function ForYou() {
                     <h1>Your Cravings</h1>
                     <div className="content">
                         {/* This is post content div */}
-                        {postDataArray && postDataArray.map((value, index) => (
+                        {modelDataPosts.data && modelDataPosts.data?.map((value, index) => (
                         // {imageArray.map((value, index) => (
                             <div className="content-post" key={index}>
                                 <div className = "post-div1" style={{display : "flex"}}>
-                                    <Avatar alt="Remy Sharp" style={{border : "2px solid black" , position : "relative" , width : "7vh" , height : "7vh" , marginTop : "1vh" , marginBottom : "1vh" , marginLeft : "2vh"}}/>
+                                    <Avatar  src={imgpP} alt="Remy Sharp" style={{border : "2px solid black" , position : "relative" , width : "7vh" , height : "7vh" , marginTop : "1vh" , marginBottom : "1vh" , marginLeft : "2vh"}}/>
                                     <div>
                                     {/* <h2>{value.Usera.name}</h2> */}
                                         <h2>{value.Usera.name}</h2>
@@ -300,7 +299,7 @@ export default function ForYou() {
                                             value.Comments.map((comment, commentIndex) => (
                                                 <div key={commentIndex} className="comment-load-main-div">
                                                     <div style={{ display: "flex" }} className="comment-load-div">
-                                                        <Avatar alt="Remy Sharp" style={{ position: "relative",border: "1px solid black" , width: "6vh", height: "6vh", marginBottom: "1vh" }} />
+                                                        <Avatar src={imgpP} alt="Remy Sharp" style={{ position: "relative",border: "1px solid black" , width: "6vh", height: "6vh", marginBottom: "1vh" }} />
                                                         <div className="comment-name-username">
                                                             <h2>{comment.Usera.name}</h2>
                                                         </div>

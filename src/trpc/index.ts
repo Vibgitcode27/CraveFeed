@@ -440,7 +440,15 @@ export const appRouter = router({
             in : recommendedDishes,
           },
         },
-      });
+        include: {
+            Usera : true,
+            Likes: true,
+            Comments: {
+                include : {
+                    Usera : true
+                }
+            }
+      }})
       return posts;
     }),
 });

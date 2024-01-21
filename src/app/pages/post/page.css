@@ -22,15 +22,15 @@ input[type=text]:focus {
 
 .username > h1 {
     font-weight: bold;
-    width: 26vh;
+    width: 25vh;
     margin: auto;
-    font-size: 17px;
+    font-size: 23px;
 }
 
 .username > h2 {
-    width: 20vh;
+    width: 17vh;
     margin: auto;
-    font-size: 14px;
+    font-size: 17px;
     color: rgba(0, 0, 0, 0.597);
 }
 
@@ -54,15 +54,16 @@ input[type=text]:focus {
     border-right: 2px solid rgba(152, 150, 150, 0.597);
 }
 .post > h1 {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bolder;
     padding-right: 5vh;
-    padding-left: 2vh;
+    padding-left: 2.5vh;
 }
 
 .post > h3 {
-    font-size: 15px;
-    margin-right: 1vh;
+    font-size: 17px;
+    margin-right: -1vh;
+    margin-left: 1vh;
 }
 
 .followers {
@@ -72,28 +73,29 @@ input[type=text]:focus {
 }
 
 .followers > h1 {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bolder;
     /* padding-right: 5vh; */
     padding-left: 6.5vh;
 }
 
 .followers > h3 {
-    font-size: 15px;
+    font-size: 17px;
     margin-right: 1vh;
+    margin-left: 1vh;
     width: 15vh;
     justify-content: center;
 }
 
 .following > h1 {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bolder;
     padding-right: 10vh;
     padding-left: 38px;
 }
 
 .following > h3 {
-    font-size: 15px;
+    font-size: 17px;
     padding-left: 2.5vh;
 }
 
@@ -106,7 +108,7 @@ input[type=text]:focus {
     margin-left: 1vh;
     padding: 1px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 20px;
     margin-bottom: 2vh;
 }
 
@@ -128,7 +130,7 @@ input[type=text]:focus {
     margin-left: 1vh;
     padding: 1px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 20px;
     margin-bottom: 2vh;
 }
 
@@ -150,7 +152,7 @@ input[type=text]:focus {
     margin-left: 1vh;
     padding: 1px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 20px;
     margin-bottom: 2vh;
 }
 .profile > button {
@@ -175,7 +177,7 @@ input[type=text]:focus {
     padding: 0px;
     width: 100%;
     display: flex;
-    font-size: 15px;
+    font-size: 20px;
 }
 .logout > div:hover {
     color: rgb(168, 0, 9);
@@ -207,13 +209,16 @@ input[type=text]:focus {
     padding-right: 1vh;
     border: 2px solid rgba(6, 6, 6, 0.772);
     border-radius: 2vh;
-    width: 50vh;
+    width: 51.5vh;
     height: 8.5vh;
     box-shadow: 4px 2px 5px rgba(116, 116, 116, 0.338);
 }
 
 .searchBox > input {
-    padding-top: 2px;
+    position: relative;
+    padding-top: -2px;
+    top: -4.6vh;
+    left: 5vh;
     font-size: 2.7vh;
 }
 
@@ -281,14 +286,14 @@ input[type=text]:focus {
 .content-post > div > div > h2 {
     padding-top: 1.5vh;
     margin-left: 1vh;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bolder;
 }
 
 .content-post > div > div > h3 {
     margin-top: -0.3vh;
     margin-left: 1vh;
-    font-size: 12px;
+    font-size: 16px;
     cursor: pointer;
 }
 
