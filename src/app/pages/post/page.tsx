@@ -59,6 +59,25 @@ export default function PostPageTSX() {
             dispatch(userPosts(post.data?.length))
         }
     })
+
+    // FETCH IMAGE LOGIC
+    const imageUrl = trpc.getUserById.useQuery({id : 1})
+
+    let [signedUrl, setSignedUrl] = useState<string | undefined>(undefined);
+    var notOkayImage = imageUrl.data?.profilepicture
+    useEffect(() => {
+        // Fetch signedUrl and update state
+        let link = `https://image-upload-nq2i.onrender.com/url/${notOkayImage}`;
+        async function getImageURL() {
+            const responseImage = await fetch(link);
+            let signeUrl = await responseImage.text();
+            setSignedUrl(signeUrl);
+        }
+
+        getImageURL();
+    }, [notOkayImage]);
+
+    console.log("signeed URL " , signedUrl)
     // Fetching State Values
 
     const id = useAppSelector((state) => state.currentUser.user.id);
@@ -72,8 +91,10 @@ export default function PostPageTSX() {
     <div className="mainDiv">
       <section className="sec1">
             <h1>CRAVEFEED</h1>
-            <Avatar alt="Remy Sharp" src={imgp4} style={{position : "relative" , width : "13vh" , height : "13vh" , marginTop : "9vh" , marginLeft : "16vh" , border: "2px solid black"}}/>
-            <div className="username">
+          { signedUrl && (
+            <Avatar alt="Remy Sharp" src={signedUrl || undefined} style={{position: "relative", width: "13vh", height: "13vh", marginTop: "9vh", marginLeft: "14vh", border: "2px solid black"}}/>
+          )}
+          <div className="username">
                 <h1>{id !== null ? (
                         name
                     ) : (

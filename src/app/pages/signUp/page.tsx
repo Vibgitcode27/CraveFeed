@@ -10,7 +10,7 @@ import LockPersonIcon from '@mui/icons-material/LockPerson';
 import { useState } from "react";
 import { trpc } from "@/app/_trpc/client";
 import { useAppDispatch , useAppSelector } from "@/app/globalRedux/hooks";
-import { loggedUser } from "@/app/globalRedux/features/users/postPageUser";
+import {getSignedUserId, loggedUser} from "@/app/globalRedux/features/users/postPageUser";
 import {useRouter} from "next/navigation";
 export default function SignUp() {
     const imgp1 = img1.src
@@ -18,8 +18,8 @@ export default function SignUp() {
     const imgp3 = img3.src
     const imgp4 = img4.src
 
+    let signedUserIDToState;
     const router = useRouter()
-
     const dispatch = useAppDispatch();
 
     const [email , setEmail] = useState<string>("");
@@ -30,7 +30,7 @@ export default function SignUp() {
       const mutation = trpc.signUp.useMutation()
       
       const check = async () => {
-        await mutation.mutate({email , username , password , name})
+          signedUserIDToState = mutation.mutate({email , username , password , name})
         setTimeout(() => {
           console.log("Mutation Data" , mutation.data)
         }, 2000)
@@ -55,8 +55,10 @@ export default function SignUp() {
                 <input type="text" id="input2" placeholder="Name" onChange={(e) => setName(e.target.value)}/>
                 <button className="loginBut" onClick={() => {check();
                     setTimeout(() => {
+                        dispatch(getSignedUserId({signedUserId : signedUserIDToState}))
+                        console.log(signedUserIDToState)
                         router.push("/pages/signUpForm")
-                    } , 300)
+                    } , 10000)
 
                 }}>SIGNUP</button>
                 <h1>OR</h1>

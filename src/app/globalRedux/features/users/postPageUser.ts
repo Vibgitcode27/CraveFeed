@@ -287,6 +287,25 @@ export const followerFollowingSlice = createSlice({
     }
 })
 
+interface  signedUser {
+    signedUserId : number
+}
+
+const initialStateSignedUser : signedUser = {
+    signedUserId : 0
+}
+
+export const signedUserSlice = createSlice({
+    name : "signedUser" ,
+    initialState : initialStateSignedUser ,
+    reducers : {
+        getSignedUserId(state , action) {
+            state.signedUserId = action.payload
+        }
+    }
+})
+
+export const {getSignedUserId} = signedUserSlice.actions
 export const { toggleFollowerFollowing } = followerFollowingSlice.actions;
 export const { setVisitingUser } = visitingUserSlice.actions;
 export const { userPostData } = postDataSlice.actions;
@@ -309,4 +328,5 @@ export default {
     userInfo : userInfoSlice.reducer,
     visitingUser : visitingUserSlice.reducer,
     followerFollowing : followerFollowingSlice.reducer,
+    signedUser : signedUserSlice.reducer
 }
