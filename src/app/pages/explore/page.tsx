@@ -21,9 +21,11 @@ import { userPostData , pushUserId , setVisitingUser , toggleFollowerFollowing} 
 import { useRouter } from "next/navigation";
 
 export default function Explore() {
-    
+
     const router = useRouter()
     const imgp7 = img6.src
+
+    const mutation = trpc.likePost.useMutation()
 
     let [signedUrl, setSignedUrl] = useState<string | null>(null);
 
@@ -38,11 +40,12 @@ export default function Explore() {
         getImageURL();
     }, []);
 
-    const [image, setImage] = useState<string>();
+    let [image, setImage] = useState<string>();
     const [open, setOpen] = useState(false);
     const [foodTags, setFoodTags] = useState<string[]>([]);
     const [cuisineTags, setCuisineTags] = useState<string[]>([]);
     const dispatch = useAppDispatch()
+    const [toBeUploadedImage , setToBeUploadedImage] = useState<string>()
     let userDataByFil;
     
     // Upload Post Logic
@@ -66,7 +69,54 @@ export default function Explore() {
         if (e.target.files && e.target.files.length > 0) {
           setImage(URL.createObjectURL(e.target.files[0]));
         }
-      }  
+      }
+
+
+      // IMAGE UPLOAD LOGIC
+
+
+
+    const [file, setFile] = useState(null);
+
+    const handleFileChange = (event) => {
+        setFile(event.target.files[0]);
+    };
+
+    const handleCombinedChange = (event) => {
+        handleImageChange(event);
+        handleFileChange(event);
+    };
+
+    const uploadFile = async () => {
+        console.log("This is file state" , file);
+
+        if (!file) {
+            console.error('No file selected');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('photos', file);
+
+        try {
+            const response = await fetch('https://image-upload-nq2i.onrender.com/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const result = await response.json();
+            console.log(result);
+            setToBeUploadedImage(result.data.imageName)
+        } catch (error) {
+            console.error('Error uploading file:', error);
+        }
+    }
+
+
+
+
+
+
 
       function handleKeyDownFood(e : KeyboardEvent<HTMLInputElement>) {
         if(e.key !== 'Enter') return;
@@ -121,16 +171,6 @@ export default function Explore() {
 
     );
 
-    async function getImageURL()
-    {
-        const responseImage = await fetch(`https://image-upload-nq2i.onrender.com/url/Website.png`);
-        signedUrl = await responseImage.text();
-    }
-
-    getImageURL();
-
-
-
     function handleLike(postId: any) {
         setLike((prevLikes) =>
           prevLikes.map((prevLike) =>
@@ -147,7 +187,7 @@ export default function Explore() {
         );
       }
       
-      const mutation = trpc.likePost.useMutation()
+
 
 
       const handleLikePost = async (postId: number) => {
@@ -314,7 +354,7 @@ export default function Explore() {
                 <img src={image} alt="" />
                 <div className="Add-Post-Upload-button">
                     <div className="Add-post-Upload-button-div">
-                        <input type="file" onChange={handleImageChange} className="input-file" />
+                        <input type="file" onChange={handleCombinedChange} className="input-file" id={"fileInput"}/>
                     </div>
                 </div>
                 <div className="inputs">
@@ -339,9 +379,14 @@ export default function Explore() {
                     </div>
                 </div>
                 <div>
-                    <button className="post-button" onClick={() => { mutationUploadPost.mutate({userId : 1 , restaurantName : uploadRestaurant , dishName : "Random" , cityName : uploadCity , caption : uploadCaption , image : "image.png" , location : uploadLocation})
-                        window.location.reload();  
-                    }}>POST</button>
+                    <button className="post-button"
+                            onClick={async () => {
+                                    await uploadFile();
+                                    const imageUrl = toBeUploadedImage || '';
+                                    mutationUploadPost.mutate({userId : 1 , restaurantName : uploadRestaurant , dishName : "Random" , cityName : uploadCity , caption : uploadCaption , image : imageUrl , location : uploadLocation})
+                                    window.location.reload();
+                    }}
+                    >POST</button>
                 </div>
         </div>
         </Box>

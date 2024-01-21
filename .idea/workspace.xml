@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b2254706-e255-4d6b-ad33-85a8296ee344" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/visit-user-profile/page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/visit-user-profile/page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/visit-user-profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/visit-user-profile/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/explore/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/explore/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/profile/page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/profile/page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/signUp/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/signUp/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/signUpForm/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/signUpForm/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +67,7 @@
       <workItem from="1704852011868" duration="1025000" />
       <workItem from="1705746128080" duration="8000" />
       <workItem from="1705748513178" duration="1280000" />
-      <workItem from="1705777141530" duration="13867000" />
+      <workItem from="1705777141530" duration="25784000" />
     </task>
     <servers />
   </component>

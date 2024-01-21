@@ -194,7 +194,7 @@ input[type=text]:focus {
 }
 
 .profileInfo > p {
-    margin-left: -4vh;
+    margin-left: -2vh;
     margin-top: 2vh;
     font-size: 14px;
     color: rgb(147, 11, 11);

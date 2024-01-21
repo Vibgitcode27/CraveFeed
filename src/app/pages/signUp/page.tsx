@@ -11,12 +11,14 @@ import { useState } from "react";
 import { trpc } from "@/app/_trpc/client";
 import { useAppDispatch , useAppSelector } from "@/app/globalRedux/hooks";
 import { loggedUser } from "@/app/globalRedux/features/users/postPageUser";
-
+import {useRouter} from "next/navigation";
 export default function SignUp() {
     const imgp1 = img1.src
     const imgp2 = img2.src
     const imgp3 = img3.src
     const imgp4 = img4.src
+
+    const router = useRouter()
 
     const dispatch = useAppDispatch();
 
@@ -51,7 +53,12 @@ export default function SignUp() {
                 <input type="text" id="input2" placeholder="Username" onChange={(e) => {setUsername(e.target.value)}}/>
                 <input type="text" id="input2" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
                 <input type="text" id="input2" placeholder="Name" onChange={(e) => setName(e.target.value)}/>
-                <button className="loginBut" onClick={check}>SIGNUP</button>
+                <button className="loginBut" onClick={() => {check();
+                    setTimeout(() => {
+                        router.push("/pages/signUpForm")
+                    } , 300)
+
+                }}>SIGNUP</button>
                 <h1>OR</h1>
                 <button className="loginBut2">GOOGLE</button>
             </div>
